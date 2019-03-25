@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)http://weizhong.yimei.cn/home/bidding/detail/auction_id/4565 -->
+<html style="font-size: 50px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>商品详情</title>
+    <script src="__PUBLIC__/index/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/index/js/rem.js.下载"></script>
+    <link href="__PUBLIC__/index/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/index/css/jquery.hiSlider.min.css">
+
+    <link type="text/css" href="__PUBLIC__/index/css/jq22.css" rel="stylesheet">
+    <style type="text/css">
+        .content{
+            margin: 10px 2px;
+        }
+        .content img{
+            width: 100%;
+        }
+        .bid-div5{
+            margin-left: 26%;
+        }
+        .bid-ok{
+            width: 3rem;
+        }
+        .hiSlider li img{
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        #wrap{
+            width: 100%;
+        }
+        .hiSlider{
+            overflow: hidden;
+            width: 100%;
+        }
+        .hiSlider-item{
+            float: left;
+        }
+        .kq{
+            text-align: center;
+            font-size: 18px;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+        .body{
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0.15rem 0.23rem 0.28rem;
+        }
+    </style>
+</head>
+
+<body>
+<div class="" id="load"></div>
+<script>
+    window.onload = function() {
+        document.getElementById('load').className='';
+    };
+</script>
+<div class="header">
+    <a onclick="javascript:history.back(-1);"><img src="__PUBLIC__/index/image/back1.png" class="h-img1"></a>
+    商品详情	<a href="http://weizhong.yimei.cn/home/singlepage/newhand"><img src="__PUBLIC__/index/image/help.png" class="h-img"></a>
+</div>
+<div id="wrap">
+    <div class="hiSlider-wrap" style="overflow: hidden; position: relative; width: 375px;"><ul class="hiSlider hiSlider3" style="width: 200%; left: -375px; position: relative;">
+        <li class="hiSlider-item item-clone" style="width: 375px; float: left;"><img src="{$auction.carousel_figure1}"></li>
+        <li class="hiSlider-item item-clone" style="width: 375px; float: left;"><img src="{$auction.carousel_figure2}"></li>
+        <li class="hiSlider-item item-clone" style="width: 375px; float: left;"><img src="{$auction.carousel_figure3}"></li></ul><div class="hiSlider-pages"><a href="javascript:;" class="active">1</a></div></div>
+</div>
+<div class="clearfix">
+    <div class="pd-div1 fl"><if condition="$auction.status eq 0 "> 还未开始
+        <elseif condition="$auction.status eq 1 "/>正在进行
+        <else /> 已结束
+    </if></div>
+    <div class="pd-div2 fr">
+        <if condition="$auction.status eq 0">
+
+        <span class="pd-span1">开始时间:</span>
+        <span class="pd-span2">{$auction.start_time|date="H:i:s",###}</span>
+        <elseif condition="$auction.status eq 1" />
+        <span class="pd-span1">距离结束仅剩:</span>
+        <span class="pd-span2">{$auction.end_time|date="Y/m/d H:i:s",###}</span>
+
+        </if>
+    </div>
+
+</div>
+<ul class="pd-ul1">
+    <li>
+        <div class="pd-div3">
+            <p class="pd-p1">{$auction.short_show}</p>
+            <div class="pd-div4 bidding_price">
+                <span class="pd-span3">当前价:</span>
+                <span class="pd-span4">¥0</span>
+            </div>
+        </div>
+        <div class="pd-div5">
+            <p class="pd-p2">
+                <span class="pd-span10">起拍价:¥{$auction.start_price}</span>
+                <span class="pd-span5">加价幅度:¥{$auction.additional_shot_range}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="pd-span5">参考价:¥{$auction.reference_price}</span>
+            </p>
+            <p class="pd-p2">
+                <span class="pd-span10">最高成交价:¥{$auction.high_price}</span>
+                <span class="pd-span5">保证金:¥{$auction.guaranty}</span>
+            </p>
+        </div>
+    </li>
+    <li>
+        <a href="http://weizhong.yimei.cn/home/index/biddetail/auction_id/4565">
+            <div class="clearfix pd-div6">
+                <img src="__PUBLIC__/index/image/logo20.png" class="pd-img2 fl">
+                <span class="pd-span6 fl">出价记录</span>
+                <img src="__PUBLIC__/index/image/logo21.png" class="pd-img2 fr">
+                <span class="pd-span7 fr">0条</span>
+            </div>
+        </a>
+        <div class="pd-div16">
+            <p class="pd-p7">当前没有数据</p><table class="pd-tabble" id="table">
+
+        </table>
+
+        </div>
+        <div class="pd-div7 clearfix">
+            <img src="__PUBLIC__/index/image/logo22.png" class="pd-img2 fl">
+            <span class="pd-span8 fl">拍卖流程</span>
+        </div>
+        <ul class="pd-ul2 clearfix">
+            <li>
+                <img src="__PUBLIC__/index/image/logo23.png" class="pd-img3">
+                <p class="pd-p3">交保证金</p>
+            </li>
+            <li>
+                <img src="__PUBLIC__/index/image/logo24.png" class="pd-img3">
+                <p class="pd-p3">出价竞拍</p>
+            </li>
+            <li>
+                <img src="__PUBLIC__/index/image/logo25.png" class="pd-img3">
+                <p class="pd-p3">竞拍成功</p>
+            </li>
+            <li>
+                <img src="__PUBLIC__/index/image/logo26.png" class="pd-img3">
+                <p class="pd-p3">支付货款</p>
+            </li>
+            <li>
+                <img src="__PUBLIC__/index/image/logo27.png" class="pd-img3">
+                <p class="pd-p3">交易成功</p>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="http://weizhong.yimei.cn/home/singlepage/auctionrules">
+            <div class="pd-div8 clearfix">
+                <span class="pd-span9 fl">竞拍规则</span>
+                <img src="__PUBLIC__/index/image/logo2.png" class="pd-img4 fr">
+            </div>
+        </a>
+        <a href="http://weizhong.yimei.cn/home/singlepage/margin">
+            <div class="pd-div9 clearfix">
+                <span class="pd-span9 fl">保证金规则</span>
+                <img src="__PUBLIC__/index/image/logo2.png" class="pd-img4 fr">
+            </div>
+        </a>
+    </li>
+    <li class="content">
+        <p class="pd-p4">拍品详情</p>
+        <p data-spm-anchor-id="a261y.7663282.descBanner.i0.606862becctxwO" hiragino="" sans="" font-size:="" text-align:="" white-space:="" background-color:="" style="margin-top: 0px; margin-bottom: 0px; white-space: normal; padding: 0px; line-height: 1.5; clear: both; color: rgb(51, 51, 51);"><span style="line-height: 1.5;"><img alt="9H0A3858" src="__PUBLIC__/index/image/9037515930_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"><br><br></span></p><p hiragino="" sans="" font-size:="" text-align:="" white-space:="" background-color:="" style="margin-top: 0px; margin-bottom: 0px; white-space: normal; padding: 0px; line-height: 1.5; clear: both; color: rgb(51, 51, 51);"><span style="font-size: 9pt;"><span style="font-weight: 700;"><span style="font-family: 仿宋_gb2312;"><img alt="undefined" src="__PUBLIC__/index/image/9076796635_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"><br><br><img alt="undefined" src="__PUBLIC__/index/image/9058171040_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"><br><br><img alt="undefined" src="__PUBLIC__/index/image/9058123356_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"><br><br><img alt="undefined" src="__PUBLIC__/index/image/9076790401_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"><br><br><img alt="详情套版152_02" src="__PUBLIC__/index/image/9037536639_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"></span></span></span></p><p style="white-space: normal;"><span style="font-size: 9pt;"><span style="font-weight: 700;"><span style="font-family: 仿宋_gb2312;"><br></span></span></span></p><p><br></p> 		</li>
+</ul>
+<div class="pd-dj"></div>
+
+<div class="pd-div10 clearfix">
+    <div class="pd-div11 fl">
+        <div class="pd-div15 fl  numble" style="margin-left: 50px;">1</div>
+    </div>
+    <div class="pd-div12 pd-red fr">
+        <p class="pd-p5">出价</p>
+        <p class="pd-p6">¥{$auction.additional_shot_range}/次</p>
+    </div>
+</div>
+
+<input type="hidden" name="" id="add_price" value="40">
+<input type="hidden" name="" id="bidding_price" value="0">
+<input type="hidden" name="" id="url" value="/home/bidding/toadd">
+<input type="hidden" name="" id="res" value="0">
+<input type="hidden" name="id" value="{$auction.id}">
+<input type="hidden" name="status" value="{$auction.status}" >
+<div class="bid">
+
+</div>
+<div class="bid-div1 bid-div_1">
+    <div class="bid-div2" style="height:auto;overflow: hidden;">
+        <div class="bid-div3 clearfix">
+            <div class="bid-div4   fl  "></div>
+            <div class="bid-div5 fl  ">¥<span class="bid-numble"></span></div>
+            <div class="bid-div6  fr  "></div>
+        </div>
+        <a href="javascript:refresh()" class="bid-ok" style="margin-left: 0.5rem;display:block;float: left;">刷新</a>
+        <button class="bid-ok" onclick="play(this)" style="float: right;margin-left: 0rem;border: none;margin-right: 0.5rem;">确认出价</button>
+
+    </div>
+</div>
+<div class="bond">
+
+</div>
+<div class="bid-div1 bid-div_2">
+    <div class="bid-div2">
+        <p class="bond-p1">保证金余额不足请充值！</p>
+        <a href="http://weizhong.yimei.cn/home/user/mymoney"><div class="bond-ok" style="margin: auto;margin-top: 0.45rem;">去充值</div></a>
+    </div>
+</div>
+<script src="__PUBLIC__/index/js/jquery.hiSlider.min.js.下载"></script>
+<script src="__PUBLIC__/index/js/time.js.下载"></script>
+
+<script>
+    $('.hiSlider3').hiSlider({
+        isFlexible: true,
+        isSupportTouch: true,
+        isShowTitle: false,
+        isShowControls: false,
+
+    });
+</script>
+<script>
+    run();
+    $('.reduce').click(function(){
+        var m=$('.numble').text();
+        m--;
+        $('.numble').text(m);
+        if($('.numble').text()<1){
+            $('.numble').text('1')
+        }
+    });
+    $('.plus').click(function(){
+        var m=$('.numble').text();
+        m++;
+        $('.numble').text(m);
+    });
+</script>
+<script>
+    $('.pd-div12').click(function(){
+        // var res = $('#res').val();
+        var auction_id = $("input[name='id']").val();
+        //console.log(res);
+        if(res == 1){
+            var add_price = $('#add_price').val();
+            var bidding_price = $('#bidding_price').val();
+            var price = Number(add_price)+Number(bidding_price);
+            //var price = Number(add_price*num)+Number(bidding_price);
+            $('.bid-numble').text(price);
+            $('.bid,.bid-div_1').toggle();
+        }else{
+            $.ajax({
+                url:"{:U('add_bid')}",    
+                data:{auction_id:auction_id},
+                type:"Post",
+                success:function(data){
+                //console.log(data.data);
+                if(data.data == 0){
+                    $('.bond,.bid-div_2').toggle();
+                }else if(data.data == 2){
+                    $('#res').val(1);
+                }else{
+                    //var num = $('.numble').text();
+                    var add_price = $('#add_price').val();
+                    var bidding_price = $('#bidding_price').val();
+                    var price = Number(add_price)+Number(bidding_price);
+                    //var price = Number(add_price*num)+Number(bidding_price);
+                    $('.bid-numble').text(price);
+                    $('.bid,.bid-div_1').toggle();
+                }},
+                error:function(data){
+                console.log(data);
+                layer.msg("出错了！！");
+            }
+            });
+        }
+
+    });
+    $('.bid').click(function(){
+        $('.bid,.bid-div_1').toggle();
+    });
+    $('.bond').click(function(){
+        $('.bond,.bid-div_2').toggle();
+    });
+
+    $('.bid-reduce').click(function(){
+        var m=$('.bid-numble').text();
+        m--;
+        $('.bid-numble').text(m);
+        if($('.bid-numble').text()<0){
+            $('.bid-numble').text('0')
+        }
+    });
+    $('.bid-plus').click(function(){
+        var m=$('.bid-numble').text();
+        m++;
+        $('.bid-numble').text(m);
+    });
+
+    if($('.pd-div16 table').length>0){
+        //$('.pd-div16 p').css('display','none')
+    };
+    function play(__self){
+        var auction_id = 4565;
+        var price = $('.bid-numble').text();
+        var formdata = new FormData();
+        formdata.append('auction_id', auction_id);
+        formdata.append('price', price);
+        ajaxplay(__self,formdata)
+    }
+    var ref = '';
+
+    ref = setInterval(function(){
+        remind();
+    },1500);
+    //报价更新
+    remind();
+    function remind(){
+        var auction_status = 1;
+        if(auction_status == 2){
+            clearInterval(ref);
+            return false;
+        }
+        var bidding_id = $('.current').find('input').val();
+        if(bidding_id == undefined){
+            bidding_id = 0;
+        }
+        var auction_id = 4565;
+        var time_status = 1;
+        $.get("/home/bidding/getprice",{bidding_id:bidding_id,auction_id:auction_id,time_status:time_status},function(data){
+
+            if(data.code == 1){
+                if(data.data == 1){
+                    window.location.href = data.url;
+                }else{
+                    $('.pd-span7').text(data.msg+'条');
+                    //alert(2);
+                    var data = data.data;
+                    var length = data.length;
+                    if(length > 5){
+                        length = 5;
+                    }
+                    var html = '';
+                    for (var i = 0; i < length; i++) {
+                        if(i == 0){
+                            html += '<tr class="current">';
+                            html += "<td>"+data[i]['user']['user_nickname']+"</td>";
+                            html += "<td>领先</td>";
+                            html += "<td>暂无</td>";
+                            html += "<td>"+data[i]['price']+"</td>";
+                        }else{
+                            html += '<tr>';
+                            html += "<td>"+data[i]['user']['user_nickname']+"</td>";
+                            html += "<td>出局</td>";
+                            html += "<td>"+data[i]['profit']['profit_price']+"</td>";
+                            html += "<td>"+data[i]['price']+"</td>";
+                        }
+
+                        html += '<input type="hidden" name="" id="bidding_id" value="'+data[i]['bidding_id']+'"></tr>';
+                    }
+                    $('.pd-div16 p').css('display','none')
+                    //$('.current').removeClass('current');
+                    var add_price = $('#add_price').val();
+                    var bidding_price = data[0]['price'];
+                    var price = Number(add_price)+Number(bidding_price);
+                    $('.bid-numble').text(price);
+
+                    $('#table').html(html);
+                    $('#bidding_price').val(data[0]['price']);
+                    $('.bidding_price .pd-span4').text('¥'+data[0]['price']);
+
+                }
+
+            }
+        });
+    }
+
+
+    function refresh(){
+        $('.bid,.bid-div_1').toggle();
+    }
+</script>
+<div id="loading" style="position:fixed;;top:38%;left: 40%;z-index:999"></div>
+
+<script type="text/javascript" src="__PUBLIC__/index/js/jquery.noty.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/index/js/center.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/index/js/inline.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/index/js/default.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/index/js/jquery.noty.packaged.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/index/js/leftTime.js"></script>
+<!-- 模板 -->
+<script type="text/javascript">
+    $(".pd-div2").each(function () {
+
+        var etime=$(this).find(".pd-span2").text();
+
+        var oDiv=$(this).find(".pd-span2");
+
+        var auction_id = $("input[name='id']").val();
+         
+
+        $.leftTime(etime,function(d){
+            console.log(d);
+
+            if(d.status){
+
+                var $dateShow1=oDiv;
+
+                var oh=eval(parseInt(d.d*24)+parseInt(d.h));
+
+                $dateShow1.text(oh+":"+d.m+":"+d.s);
+                if(oh ==0 && parseInt(d.m)==0&&parseInt(d.s)==0){
+                    alert(1);
+                    $.ajax({
+                        url:"{:U('setOneToTwo')}",
+                        data:{auction_id:auction_id},
+                        type:"Post",
+                        success:function(data){
+
+                        },
+
+                        error:function(data){
+                            console.log(data);
+                            layer.msg("出错了！！");
+                        }
+                    });
+                }
+            }
+
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    /*
+
+     */
+    function ajaxplay(_self,formdata){
+
+        var url = $("#url").val();
+
+        //不可点击
+
+        $(_self).prop("disabled",true);
+
+        //加载中
+
+        $('#loading').html('<img src="/themes/simpleboot3/public/tools/loading.gif" width="60" height="60">');
+
+        //ajax交互
+
+        $.ajax({
+
+            type : 'post',
+
+            url : url,
+
+            data:formdata,
+
+            processData: false,
+
+            contentType: false,
+
+            dataType:'json',
+
+            complete : function(data){
+
+                data = JSON.parse(data.responseText);
+
+                console.log(data);
+
+                if(data['code'] == 1){
+                    $('#loading').html("");
+                    //var auction_id = 4565;
+                    //$.get("/home/bidding/setmemcache", { auction_id: auction_id},function(){
+                    noty({text: data['msg'], layout: "center",type: 'success',timeout: 1400});
+                    setTimeout('window.location="'+data['url']+'"',1400)
+                    //});
+                }else{
+
+                    $('#loading').html("");
+
+                    $(_self).prop("disabled",false);
+
+                    noty({text: data['msg'], layout: "center",type: 'error',timeout: 4000});
+
+
+
+                }
+
+
+
+            }
+
+        });
+
+    }
+
+</script>
+
+
+</body></html>
