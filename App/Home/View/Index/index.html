@@ -164,9 +164,9 @@
                             <img src={$auc_info['thumbnail']} class="tb-img1 fl">
                             <div class="fr tb-div1">
                                 <p class="tb-p2">{$auc_info['shop_name']}</p>
-                                <p class="tb-p3">当前价:{$auc_info['high_price']}元</p>
+                                <p class="tb-p3">当前价:{$auc_info['success_price']}元</p>
                                 <div class="clearfix">
-                                    <span class="tb-span1">0次出价</span>
+                                    <span class="tb-span1">{$auc_info['success_times']}次出价</span>
                                     <div class="tb-div2 bc-grey fr"><if condition="$auc_info['status'] eq 0" > {$auc_info['start_time']|date="H:i:s",###} <else />正在进行</if> </div>
                                 </div>
                             </div>
@@ -273,7 +273,7 @@
                     str += '<img src='+ data['data'][i]['thumbnail'] +' class="tb-img1 fl">';
                     str += '<div class="fr tb-div1">';
                     str += '<p class="tb-p2">'+ data['data'][i]['shop_name'] + '</p>';
-                    str += '<p class="tb-p3">当前价:'+ data['data'][i]['high_price'] +'元</p>'
+                    str += '<p class="tb-p3">当前价:'+ data['data'][i]['success_price'] +'元</p>'
                     str += '<span class="tb-span1">0次出价</span>';
                     if(data['data'][i]['status'] == 0)
                     {
