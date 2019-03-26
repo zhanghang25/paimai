@@ -127,8 +127,6 @@ class UserController extends ComController
         $data['ming_password'] = I('post.ming_password');
 
         $data['password'] = md5(I('post.ming_password').config['salt']);
-
-
         if ($id) {
             M('user')->data($data)->where('id=' . $id)->save();
             addlog('编辑客户，AID：' . $id);
