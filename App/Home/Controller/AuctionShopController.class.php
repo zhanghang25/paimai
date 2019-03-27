@@ -87,7 +87,7 @@ class AuctionShopController extends ComController
 //            $data['code']  = 2;
 //            $this->ajaxReturn($data);
 //        }
-     $data['data'] = M('bidding')->where('auction_id='.$auction_id)->order("time DESC")->select();
+     $data['data'] = M('bidding')->leftjoinwhere('auction_id='.$auction_id)->order("time DESC")->select();
       $data['length'] = count($data['data']);
         $this->ajaxReturn($data);
     }

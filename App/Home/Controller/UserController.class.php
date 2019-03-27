@@ -20,7 +20,7 @@
             if ($data){
                 
                 session('hid',$data['id']);
-                $this->ajaxReturn (array('code'=>1,'msg'=>'登陆成功'));
+                $this->ajaxReturn (array('code'=>1,'msg'=>'登陆成功','url'=>U('home/index/index')));
             }else{
                 $this->ajaxReturn (array('code'=>0,'msg'=>'账号或密码错误请重试'));
             }
