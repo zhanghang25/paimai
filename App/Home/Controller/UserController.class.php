@@ -113,5 +113,69 @@
                     return $this->ajaxReturn(array('code'=>0,'msg'=>'未知错误'));
                 }
             }
+            public function edit(){
+                $statusStr = array(
+                    "0" => "短信发送成功",
+                    "-1" => "网络错误",
+                    "-2" => "网络错误",
+                    "30" => "密码错误",
+                    "40" => "网络错误",
+                    "41" => "网络错误",
+                    "42" => "网络错误",
+                    "43" => "网络错误",
+                    "50" => "网络错误"
+                );
+                $phone=I('post.phone');
+                $user=M('user');
+                $ph=$user->where('phone_num='.$phone)->find();
+                if (!$ph){
+                    return $this->ajaxReturn (array('code'=>2,'msg'=>'当前手机号未注册'));
+                }
+                if (session($phone)&&session($phone)['num']>4){
+                    return $this->ajaxReturn (array('code'=>900,'msg'=>'当前手机号发送验证码过多,请稍后重试'));
+                }else{
+                    $num=1;
+                }
+    
+                $smsapi = "http://www.smsbao.com/"; //短信网关
+                $user = "linxipai"; //短信平台帐号
+                $sms=rand(10000,99999);
+                $pass = md5("linxipai"); //短信平台密码
+                $content="您的验证码为{$sms}，在10分钟内有效";//要发送的短信内容
+                $phone = $phone;
+    
+                $sendurl = $smsapi."sms?u=".$user."&p=".$pass."&m=".$phone."&c=".urlencode($content);
+                $result =file_get_contents($sendurl) ;
+    
+                if (!$result){
+                    $num=session($phone)['num']+1;
+                    session($phone,array('code'=>$sms,'num'=>$num,'time'=>time()+600));
+                    return $this->ajaxReturn (array('code'=>1,'msg'=>$statusStr[$result]));
+                }else{
+                    return $this->ajaxReturn (array('code'=>0,'msg'=>$statusStr[$result]));
+                }
+            }
+            public function editpassword(){
+            $lt=array();
+            $User=M('user');
+            $data=I('post.');
+                if (!preg_match_all('/^[a-zA-Z0-9\~\!\@\#\$\%\^\&\*\_\+\{\}\:\"\|\<\>\?\-\=\;\'\,\.\/]{6,15}$/',$data['password'])){
+                    return $this->ajaxReturn (array('code'=>0,'msg'=>'请输入数字字母特殊符号6-15位'));
+                }
+                if ($data['password']!==$data['upassword']){
+                    return $this->ajaxReturn (array('code'=>0,'msg'=>'两次密码输入不一致'));
+                }
+                if ($data['code']!=session($data['mobile'])['code']||session($data['mobile'])['time']<time()){
+                    return $this->ajaxReturn (array('code'=>0,'msg'=>'您的验证码不正确'));
+                }
+                $lt['ming_password']=I('post.password');
+                $lt['password']=md5(I('post.password').config['salt']);
+                $a=$User->where('phone_num='.$data['mobile'])->save($lt);
+                if($a){
+                    return $this->ajaxReturn (array('code'=>1,'msg'=>'修改成功请登录','url'=>U('home/user/login')));
+                }else{
+                    return $this->ajaxReturn (array('code'=>1,'msg'=>'未知错误请重试'));
+                }
+            }
             
     }
