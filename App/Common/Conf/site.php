@@ -1,0 +1,1 @@
+<?php return array('one_profit' => '2','two_profit' => '5','cert' => '','key' => '','signKey' => '','mchid' => '','sms_url' => '','sms_username' => '','sms_password' => '','USER' => '','UKEY' => '','pai_fan_nums' => '','cash_fei' => '','cash_money' => '','qian_integral' => '','gudong_ticheng' => '','xiaofei_ticheng' => '','refill_quota' => '','match' => '0',);

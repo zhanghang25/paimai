@@ -18,7 +18,8 @@ if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 define('APP_DEBUG',true);
 
 //define('BIND_MODULE','Home');//绑定Home模块到当前入口文件，可用于新增Home模块
-
+//定义配置文件目录
+define('CONFIG_PATH','./App/Common/Conf/');
 // 定义应用目录
 define('APP_PATH','./App/');
 // 引入ThinkPHP入口文件

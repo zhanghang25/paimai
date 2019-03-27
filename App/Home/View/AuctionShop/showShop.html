@@ -92,7 +92,7 @@
             <p class="pd-p1">{$auction.short_show}</p>
             <div class="pd-div4 bidding_price">
                 <span class="pd-span3">当前价:</span>
-                <span class="pd-span4">¥0</span>
+                <span class="pd-span4">¥{$auction.start_price}</span>
             </div>
         </div>
         <div class="pd-div5">
@@ -256,7 +256,7 @@
             else{
             $.ajax({
                 url:"{:U('convert')}",
-                data:{auction_id:auction_id},
+                data:{auction_id:auction_id,res:res},
                 type:"Post",
                 success:function(data){
                 //console.log(data.data);
@@ -272,7 +272,7 @@
                     $('#res').val(1);
                 }else{
                     //var num = $('.numble').text();
-
+                    noty({text: data['msg'], layout: "center",type: 'error',timeout: 4000});
                 }},
                 error:function(data){
                 console.log(data);
@@ -336,13 +336,13 @@
         //     clearInterval(ref);
         //     return false;
         // }
+
         var bidding_id = $('.current').find('input').val();
         if(bidding_id == undefined){
             bidding_id = 0;
         }
         var auction_id = $("input[name='id']").val();
         var status = $("input[name='status']").val();
-        var add_price1 = $('#add_price').val() * 0.15;
         $.get("{:U('per_time')}",{bidding_id:bidding_id,auction_id:auction_id,status:status},function(data){
 
             if(data.code == 1){
@@ -361,15 +361,15 @@
                     for (var i = 0; i < length; i++) {
                         if(i == 0){
                             html += '<tr class="current">';
-                            html += "<td>"+data[i]['user_id']+"</td>";
+                            html += "<td>"+data[i]['name']+"</td>";
                             html += "<td>领先</td>";
                             html += "<td>暂无</td>";
                             html += "<td>"+data[i]['price']+"</td>";
                         }else{
                             html += '<tr>';
-                            html += "<td>"+data[i]['user_id']+"</td>";
+                            html += "<td>"+data[i]['name']+"</td>";
                             html += "<td>出局</td>";
-                            html += "<td>"+add_price1+"</td>";
+                            html += "<td>{:C(\'two_profit\')}</td>";
                             html += "<td>"+data[i]['price']+"</td>";
                         }
 
@@ -378,12 +378,30 @@
                     $('.pd-div16 p').css('display','none')
                     //$('.current').removeClass('current');
                     var add_price = $('#add_price').val();
+                    if(data[0] == undefined){
+                        var ccc = $("#bidding_price").val();
+                        var bidding_price = ccc;
+                        var price = Number(add_price)+Number(bidding_price);
+                    }else{
+
                     var bidding_price = data[0]['price'];
+
+
                     var price = Number(add_price)+Number(bidding_price);
+                    }
                     $('.bid-numble').text(price);
 
                     $('#table').html(html);
-                    $('#bidding_price').val(data[0]['price']);
+
+                    if (data[0] == undefined){
+                        var cc = $("#bidding_price").val();
+                        $('#bidding_price').val(cc);
+                    }else{
+
+                        $('#bidding_price').val(data[0]['price']);
+                    }
+
+
                     $('.bidding_price .pd-span4').text('¥'+data[0]['price']);
                     $('#res').val(1);
                 }

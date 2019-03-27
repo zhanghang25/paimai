@@ -1,0 +1,210 @@
+<include file="Public/head"/>
+<body class="no-skin">
+<include file="Public/header"/>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+<style type="text/css">
+    .row .profile-info-row{line-height: 2.5}
+    .row .profile-info-row input{padding:0 0;width: 100%}
+</style>
+    <include file="Public/sidebar"/>
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            <include file="Public/breadcrumbs"/>
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+                <include file="Public/set"/>
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form class="form-horizontal" name="base" id="base" method="post" action="{:U('save')}">
+                            <div class="profile-user-info profile-user-info-striped">
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name">拍卖商品返佣额</div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span>上级返佣(比下级返佣少)</span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span>下级返佣</span></div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> 参数 </div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span><input name="one_profit" value="{:C('one_profit')}" type="text"/> </span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span><input name="two_profit" value="{:C('two_profit')}" type="text"/> </span></div>
+
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="profile-user-info profile-user-info-striped">
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> 微信支付参数 </div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span>cert</span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span>key</span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span>signKey</span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span>商家mchid</span></div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> 参数 </div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span><input name="cert" value="{:C('cert')}" type="text"/> </span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span><input name="key" value="{:C('key')}" type="text"/> </span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span><input name="signKey" value="{:C('signKey')}" type="text"/> </span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span><input name="mchid" value="{:C('mchid')}" type="text"/> </span></div>
+                                    
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="profile-user-info profile-user-info-striped">
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> 短信参数 </div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span>短信网关</span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span>短信平台帐号</span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span>短信平台密码</span></div>
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> 参数 </div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span><input name="sms_url" value="{:C('sms_url')}" type="text"/> </span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span><input name="sms_username" value="{:C('sms_username')}" type="text"/> </span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span><input name="sms_password" value="{:C('sms_password')}" type="text"/> </span></div>
+                                    
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="profile-user-info profile-user-info-striped">
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> 打印机配置 </div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span>注册账号</span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span>UKEY</span></div>
+                  
+                                </div>
+
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name"> 参数 </div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span><input name="USER" value="{:C('USER')}" type="text"/> </span></div>
+                                    <div class="profile-info-value" style="border-right: 1px solid #DCEBF7;"><span><input name="UKEY" value="{:C('UKEY')}" type="text"/> </span></div>
+                                    
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" style="    width: 7%;"> 排队返现： </label>
+                                <div class="col-sm-9" style="padding-top: 5px;">
+                                排队人数：<input type="Number" name="pai_fan_nums" value="{:C('pai_fan_nums')}">
+                                    </div>
+
+                            </div>
+                            
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" style="    width: 7%;"> 提现手续费： </label>
+                                
+                                提现手续费：<input type="text" name="cash_fei" value="{:C('cash_fei')}">%  最低提现额度：<input type="text" name="cash_money" value="{:C('cash_money')}">
+                                
+                            </div>
+                            
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" style="    width: 7%;"> 签到积分： </label>
+                                <div class="col-sm-9" style="padding-top: 5px;">
+                                签到赠送积分：<input type="Number" name="qian_integral" value="{:C('qian_integral')}">
+                                </div>
+
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" style="    width: 7%;"> 消费提成： </label>
+                                <div class="col-sm-9" style="padding-top: 5px;">
+                                股东宝妈：<input type="Number" class="gudong_ticheng" name="gudong_ticheng" value="{:C('gudong_ticheng')}">% 消费宝妈：<input type="Number" name="xiaofei_ticheng" value="{:C('xiaofei_ticheng')}">%
+                                </div>
+
+                            </div>
+                          <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" style="    width: 7%;"> 进货额度： </label>
+                                <div class="col-sm-9" style="padding-top: 5px;">
+                                最大额度：<input type="Number" class="refill_quota" name="refill_quota" value="{:C('refill_quota')}">
+                                </div>
+
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" style="    width: 7%;"> 代理商提现方式： </label>
+                                <div class="col-sm-9" style="padding-top: 5px;">
+                                    <label>
+                                        <input name="match" <if condition="$match eq 0">checked</if> value="0" type="radio" class="ace">
+                                        <span class="lbl"> 线上 </span>&nbsp;&nbsp;
+                                    </label>
+                                    <label>
+                                        <input name="match" <if condition="$match eq 1">checked</if> value="1" type="radio" class="ace">
+                                        <span class="lbl"> 线下 </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <input type="hidden" name="filename" value="site"/>
+                            <div class="clearfix form-actions">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <button class="btn btn-info" type="submit">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        保存
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+    <include file="Public/footer"/>
+
+</div><!-- /.main-container -->
+
+<include file="Public/footerjs"/>
+
+<!-- inline scripts related to this page -->
+<script>
+    $(function(){
+        $('#base').ajaxForm({
+            //beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function complete(data){
+            if(data.status==1){
+                layer.alert(data.info, {icon: 6}, function(index){
+                    layer.close(index);
+                    //window.location.href="{:U('Config/base')}";
+                });
+            }else{
+                alert(data.info);
+                return false;
+            }
+        }
+
+        //提示
+        $('.refill_money').click(function(){
+            //小tips
+            layer.tips('充值金额为“0”时代表不开启', '.refill_money', {
+              tips: [1, '#3595CC'],
+              time: 4000
+            });
+        })
+    });
+</script>
+</body>
+</html>

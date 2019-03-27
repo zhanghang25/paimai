@@ -16,6 +16,11 @@ class AuctionShopController extends ComController
 {
     public function showShop()
     {
+        if (empty(session('hid')))
+        {
+            $this->display('User/login');
+        }else{
+
         $id = I('param.id');
         $time = time();
         $auction =  M('auction_info')->where("id=".$id)->find();
@@ -27,6 +32,7 @@ class AuctionShopController extends ComController
         }
         $this->assign('auction',$auction);
         $this->display();
+        }
     }
 
     public function setOneToTwo()
@@ -46,32 +52,61 @@ class AuctionShopController extends ComController
 
     public function add_bid()
     {
+
         $price = I('post.price');
         $auction_id = I('post.auction_id');
         $high_price = I('post.high_price');
-        M('auction_info')->where("id=".$auction_id)->setInc('success_times',1);
-        if($price>=$high_price)
+
+        //当拍卖结束，用户还停留在加价页面，提示退出到主页
+        $test_auction = M('auction_info')->where("id=".$auction_id)->find();
+        if($test_auction['status'] == 2)
         {
-            $data2['status'] = 2;
-            M('auction_info')->data($data2)->where("id=".$auction_id)->save();
+            $data4['msg'] = "拍卖已结束，请参与下次竞拍！";
+            $data4['url'] = U('Home/Index/index');
+            $this->ajaxReturn($data4);
         }
+
+        //拍卖次数加一
+        M('auction_info')->where("id=".$auction_id)->setInc('success_times',1);
+
+        //所有加价信息状态置0
         $data['status'] = 0;
         M('bidding')->data($data)->where("auction_id=".$auction_id)->save();
         $add_price = intval(I('post.add_price'));
-        $anti_price = $add_price*0.15;
+
         $data['auction_id'] = $auction_id;
-        $data['profit'] = $anti_price;
+        $data['profit'] = C("two_profit");
         $data['price'] = $price;
         $data['status'] = 1;
+        $data['user_id'] = session('hid');
         $data['time'] = getMillisecond();
-        $data1['test'] = $data['time'];
+
         M('bidding')->data($data)->add();
         $data1['msg'] = "恭喜您，加价成功！！";
+        //加入返佣
+        $biddings = M('bidding')->where('auction_id='.$auction_id)->order("time desc")->select();
+        if(count($biddings)>1)
+        {
+            $user_id = $biddings[1]['user_id'];
+            $user = M('user')->where('id='.$user_id)->find();
+        //加入二级返佣
+            M('user')->where('id='.$user_id)->setInc('available_balance',C('two_profit'));
+        //加入一级返佣
+            M('user')->where('id='.$user['parent_id'])->setInc('available_balance',C('one_profit'));
+
+        }
+
 
         $data3['success_price']= $price;
         M('auction_info')->data($data3)->where("id=".$auction_id)->save();
 
         $data1['url'] = U('Home/AuctionShop/showShop',array('id'=>$auction_id));
+        //达到最高成交价，拍卖结束
+        if($price>=$high_price)
+        {
+            $data2['status'] = 2;
+            M('auction_info')->data($data2)->where("id=".$auction_id)->save();
+        }
         $this->ajaxReturn($data1);
 
     }
@@ -87,7 +122,11 @@ class AuctionShopController extends ComController
 //            $data['code']  = 2;
 //            $this->ajaxReturn($data);
 //        }
-     $data['data'] = M('bidding')->leftjoinwhere('auction_id='.$auction_id)->order("time DESC")->select();
+     $data['data'] = M('bidding')->alias('b')->join("qw_user AS u ON b.user_id=u.id ")
+                                   ->where('auction_id='.$auction_id)
+                                   ->order("time DESC ")
+                                   ->field("b.*,u.name")
+                                   ->select();
       $data['length'] = count($data['data']);
         $this->ajaxReturn($data);
     }
@@ -95,13 +134,35 @@ class AuctionShopController extends ComController
 
     public function convert()
     {
-        //客户是否足够保证金验证
+
+
+
+        $res = I('post.res');
         $auction_id = I('post.auction_id');
+        $auction = M('auction_info')->where('id='.$auction_id)->find();
+        $user = M('user')->where('id='.session('hid'))->find();
+        //判断用户保证金是否大于拍卖商品的保证金
+        if($auction['guaranty']>$user['guaranty'])
+        {
+            $data['data'] = 0;
+            $this->ajaxReturn($data);
+        }
+        //如果首次加价，并且保证金够，将保证金扣除到冻结金里
+        if($res == 0)
+        {
+            $data1['guaranty'] = $user['guaranty']-$auction['guaranty'];
+            $data1['freeze'] = $user['freeze']+$auction['guaranty'];
+            M('user')->data($data1)->where('id='.session('hid'))->save();
+        }
+
+
         $bidding = M('bidding')->where('auction_id='.$auction_id)->select();
         if(empty($bidding))
         {
             $data['data'] = 2;
         }
+        $data['msg'] = "拍卖已结束！！";
+
         $this->ajaxReturn($data);
 
     }

@@ -41,4 +41,25 @@ class SettingController extends ComController
         addlog('修改网站配置。');
         $this->success('恭喜，网站配置成功！');
     }
+
+    public function save()
+    {
+        if(!IS_POST)    $this->error('数据来源错误');
+        $config = I('post.');
+        $filename = I('post.filename');
+        unset($config['filename']);
+        $data = '<?php return array(';
+        foreach($config as $k=>$v){
+            $data .= "'$k' => '$v',";
+        }
+        $data .= ');';
+        $file = @fopen(CONFIG_PATH.$filename.'.php','w');
+        $result = fwrite($file,$data);
+        if($file)   @fclose($file);
+        if($result){
+            $this->success('保存成功');
+        }else{
+            $this->error('保存失败');
+        }
+    }
 }

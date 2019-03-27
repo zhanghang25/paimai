@@ -19,5 +19,6 @@ return array(
     'DB_COMPRESS' => '1',         //压缩备份文件需要PHP环境支持gzopen,gzwrite函数        0:不压缩 1:启用压缩
     'DB_LEVEL' => '9',         //压缩级别   1:普通   4:一般   9:最高
     //扩展配置文件
-    'LOAD_EXT_CONFIG' => 'db',
+    'LOAD_EXT_CONFIG' => 'db,site',
+    
 );

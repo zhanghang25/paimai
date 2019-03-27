@@ -64,6 +64,7 @@ class ShopController extends ComController
         {
             //加入商品表信息
             $shop = M('shop')->where("id=".$id)->find();
+            $auction['shop_id'] = $shop['id'];
             $auction['shop_name'] = $shop['name'];
             $auction['shop_time'] = $shop['addtime'];
             $auction['shop_status'] = $shop['status'];
