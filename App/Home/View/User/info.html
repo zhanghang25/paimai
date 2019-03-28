@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://weizhong.yimei.cn/home/user/message -->
+<html style="font-size: 54.8px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>个人信息</title> 
+    <script src="__PUBLIC__/info/jquery.1.9.1.js.下载"></script>
+    <script type="text/javascript" src="__PUBLIC__/info/rem.js.下载"></script>
+    <link href="__PUBLIC__/info/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/info/jquery.hiSlider.min.css">
+    
+    <link type="text/css" href="__PUBLIC__/info/jq22.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="" id="load"></div>
+<script>
+    window.onload = function() {
+        document.getElementById('load').className='';
+    };
+</script>
+
+<div class="header">
+	<a onclick="javascript:history.back(-1);"><img src="__PUBLIC__/info/back1.png" class="h-img1"></a>
+	  个人信息	<a href="http://weizhong.yimei.cn/home/singlepage/newhand"><img src="__PUBLIC__/info/help.png" class="h-img"></a>
+</div>
+
+<div class="ppi-div1 clearfix">
+    <form enctype="multipart/form-data" method="post" id="form1">
+        <input type="file" name="avatar" id="avatar" style="display:none">             
+    </form>
+    <span class="ppi-span1">头像</span>
+    <img src="__PUBLIC__/info/logo2.png" class="ppi-img2 fr">
+    <img src="__PUBLIC__/info/headicon.png" class="ppi-img1 fr" id="tx">
+</div>
+
+<ul class="ppi-ul1">
+    <a href={:U('personal/mgai')}>
+    <li class="clearfix">
+        <span class="ppi-span1 fl">昵称</span>
+        <img src="__PUBLIC__/info/logo2.png" class="p-img5 fr">
+        <span class="ppi-span2 fr">你很帅</span>
+    </li>
+    </a>
+    <li class="clearfix">
+        <span class="ppi-span1 fl">手机号</span>
+        <img src="__PUBLIC__/info/logo2.png" class="p-img5 fr">
+        <span class="ppi-span2 fr">15937353357</span>
+    </li>
+</ul>
+<script>
+    $('.ppi-img1').click(function(){
+        $('#avatar').click();      
+    })
+     $("#avatar").change(function(evt){         
+        var data = new FormData($('#form1')[0]); 
+        console.log(data);
+        $.ajax({  
+            url: "/home/user/uploadavatar",  
+            type: 'POST',  
+            data: data,  
+            dataType: 'JSON',  
+            cache: false,  //cache属性是flase（默认值）时：每次读取的是最新的数据。
+            processData: false, //默认为false，当设置为true的时候,jquery ajax 提交的时候不会序列化 data，而是直接使用data 
+            contentType: false,//
+            beforeSend:function(data){
+                //$(".hideimg").show();
+                // console.log(data);//打印输出
+            },
+            success: function(data){
+                //$(".hideimg").hide();
+                // console.log(data);
+                // console.log(data.data);
+
+                var avatar = data.data;
+                console.log(avatar);
+
+                $("#tx").attr('src', avatar);
+            }
+        });
+    }); 
+</script>
+
+
+
+</body></html>

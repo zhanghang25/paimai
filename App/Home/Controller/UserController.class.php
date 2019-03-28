@@ -9,6 +9,13 @@
     use Vendor\Page;
     class UserController extends  ComController{
         public function login(){
+            if (session ('hid')){
+                $user=M('user');
+                $user=$user->where ('id='.session ('hid'))->find();
+                $this->assign('user',$user);
+                $this->display ('User/geren');
+                exit;
+            }
             $this->display();
         }
         public function dologin(){
@@ -20,11 +27,22 @@
             if ($data){
                 
                 session('hid',$data['id']);
+
                 $this->ajaxReturn (array('code'=>1,'msg'=>'登陆成功','url'=>U('home/index/index')));
+
+                $this->ajaxReturn (array('code'=>1,'msg'=>'登陆成功','url'=>U('home/user/geren')));
+
             }else{
                 $this->ajaxReturn (array('code'=>0,'msg'=>'账号或密码错误请重试'));
             }
         }
+           public function geren(){
+               if (session ('hid')){
+                   $this->display ('User/geren');
+                   exit;
+               }
+               $this->display('user/login');
+           }
             public function sms(){
                 $statusStr = array(
                     "0" => "短信发送成功",
@@ -99,7 +117,7 @@
                 
                 $lt=array();
                 $lt['name']=$data['name'];
-                $lt['invite_code']=substr(md5(uniqid(microtime(true),true)),1,8);
+                $lt['invite_code']= $this->code();
                 $lt['status']=1;
                 $lt['parent_id']=$invite_code['id'];
                 $lt['create_time']=time();
@@ -175,6 +193,25 @@
                     return $this->ajaxReturn (array('code'=>1,'msg'=>'修改成功请登录','url'=>U('home/user/login')));
                 }else{
                     return $this->ajaxReturn (array('code'=>1,'msg'=>'未知错误请重试'));
+                }
+            }
+            public function code(){
+               $user=M('user');
+                $code=substr(md5(uniqid(microtime(true),true)),1,8);
+                $u=$user->where("invite_code='".$code."'")->find ();
+                if ($u){
+                    $this->code();
+                    exit;
+                }else{
+                    return $code;
+                }
+            }
+            public function layout(){
+                   session('hid','0');
+                if (!session('hid')){
+                    return $this->ajaxReturn(array ('msg'=>'退出成功，请重新登录','code'=>200,'url'=>U('home/user/login')));
+                }else{
+                    return $this->ajaxReturn(array('msg'=>'意外错误请重试','code'=>0));
                 }
             }
             
