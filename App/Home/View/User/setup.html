@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://weizhong.yimei.cn/home/user/set -->
+<html style="font-size: 54.8px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>设置</title> 
+    <script src="__PUBLIC__/huser/setup/jquery.1.9.1.js.下载"></script>
+    <script type="text/javascript" src="__PUBLIC__/huser/setup/rem.js.下载"></script>
+    <link href="__PUBLIC__/huser/setup/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/huser/setup/jquery.hiSlider.min.css">
+    
+    <link type="text/css" href="__PUBLIC__/huser/setup/jq22.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="" id="load"></div>
+<script>
+    window.onload = function() {
+        document.getElementById('load').className='';
+    };
+</script>
+
+<div class="header">
+	<a onclick="javascript:history.back(-1);"><img src="__PUBLIC__/huser/setup/back1.png" class="h-img1"></a>
+	  设置	<a href="http://weizhong.yimei.cn/home/singlepage/newhand"><img src="__PUBLIC__/huser/setup/help.png" class="h-img"></a>
+</div>
+
+<ul class="s-ul1">
+    <a href="http://weizhong.yimei.cn/home/singlepage/problems">
+    <li class="clearfix">
+            <img src="__PUBLIC__/huser/setup/logo14.png" class="c-img2 fl">
+            <span class="s-span1 fl">常见问题</span>
+            <img src="__PUBLIC__/huser/setup/logo2.png" class="c-img1 fr">
+
+    </li>
+    </a>
+    <a href="http://weizhong.yimei.cn/home/singlepage/agreement">
+    <li class="clearfix">
+            <img src="__PUBLIC__/huser/setup/logo15.png" class="c-img2 fl">
+            <span class="s-span1 fl">服务协议</span>
+            <img src="__PUBLIC__/huser/setup/logo2.png" class="c-img1 fr">
+    </li>
+    </a>
+    <a href="http://weizhong.yimei.cn/home/singlepage/aboutus">
+    <li class="clearfix">
+            <img src="__PUBLIC__/huser/setup/logo16.png" class="c-img2 fl">
+            <span class="s-span1 fl">关于我们</span>
+            <img src="__PUBLIC__/huser/setup/logo2.png" class="c-img1 fr">
+    </li>
+    </a>
+
+<input type="hidden" id="url" value={:U('home/user/layout')}>
+</ul>
+
+<div class="c-div1 clearfix">
+    <div class="c-btn">退出登录</div>
+</div>
+
+
+
+<script type="text/javascript" src="__PUBLIC__/huser/setup/ajaxForm.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/huser/setup/jquery-2.1.4.min.js.下载"></script>
+<div id="loading" style="position:fixed;;top:38%;left: 40%;z-index:999"></div>	
+
+<script type="text/javascript" src="__PUBLIC__/huser/setup/jquery.noty.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/huser/setup/center.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/huser/setup/inline.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/huser/setup/default.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/huser/setup/jquery.noty.packaged.js.下载"></script>
+
+<!-- 模板 -->
+
+<script type="text/javascript">
+/*
+	
+ */
+function ajaxplay(_self,formdata){	
+
+    var url = $("#url").val();
+
+	//不可点击
+
+	$(_self).prop("disabled",true);
+
+	//加载中
+
+	$('#loading').html('<img src="__PUBLIC__/huser/registe/loading.gif" width="60" height="60">');
+
+	//ajax交互
+
+	$.ajax({
+
+		type : 'post',
+
+		url : url,
+
+		data:formdata,
+
+        processData: false,
+
+        contentType: false,
+
+        dataType:'json',
+
+		complete : function(data){
+
+			data = JSON.parse(data.responseText);
+
+			console.log(data);
+
+			if(data['code'] == 1){
+
+				$('#loading').html("");
+
+				noty({text: data['msg'], layout: "center",type: 'success',timeout: 1500});
+
+				setTimeout('window.location="'+data['url']+'"',1500)
+
+			}else{
+
+				$('#loading').html("");
+
+				$(_self).prop("disabled",false);
+
+				noty({text: data['msg'], layout: "center",type: 'error',timeout: 4000});
+
+
+
+			}
+
+		
+
+		} 
+
+	});		
+
+}
+
+</script>
+
+		
+<script>
+    $('.c-btn').click(function(){
+      var url =$('#url').val();
+
+        $.post("{:U('home/user/layout')}",function(data){
+
+            if(data.code == 200){
+                noty({text: "退出成功", layout: "center",type: 'success',timeout: 4000});
+                setTimeout('window.location.href=url;',1500);
+            }else{
+                noty({text: "退出失败", layout: "center",type: 'error',timeout: 4000});
+            }
+        });
+
+    })
+</script>
+
+</body></html>
