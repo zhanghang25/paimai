@@ -21,8 +21,9 @@
 
                 <!-- /section:settings.box -->
                 <div class="row">
-                    <div class="col-xs-12">
-                        <form class="form-horizontal" id="form" method="post" action="{:U('update')}">
+                    <h4 style="text-align: center;color:red;">小提示：没有设置积分，反拍额兑换概率无法添加积分商品<a>点我设置<a/></h4>
+                    <h3 class="col-xs-12">
+                        <form class="form-horizontal" id="form" method="post" action="{:U('integral/doadd')}">
 
                             <!-- PAGE CONTENT BEGINS -->
 
@@ -30,12 +31,12 @@
                             <div class="space-4"></div>
                             <div class="form-group">
                                 <label class="col-sm-1 control-label no-padding-right" for="form-field-1">
-                                    商品标题 </label>
+                                    积分商品名称 </label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="name" id="title" placeholder="文章标题"
+                                    <input type="text" name="name" id="title" placeholder="积分商品名称"
                                            class="col-xs-10 col-sm-5" value="{$shop['name']}">
                                     <span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">文章标题不能为空。</span>
+												<span class="middle">积分商品名不能为空。</span>
 											</span>
                                 </div>
                             </div>
@@ -52,27 +53,13 @@
                                 </div>
 
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="form-field-4">
-                                    轮播图 </label>
-                                <div class="col-sm-9">
-                                    <div class="col-xs-10 col-sm-5">
-                                        {:UpImage("carousel_figure1",100,100,$shop['carousel_figure1'])}
-                                        {:UpImage("carousel_figure2",100,100,$shop['carousel_figure2'])}
-                                        {:UpImage("carousel_figure3",100,100,$shop['carousel_figure3'])}
-                                    </div>
-                                    <span class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">仅支持jpg、gif、png、bmp、jpeg，且小于1MB。</span>
-											</span>
-                                </div>
 
-                            </div>
                             <div class="form-group">
                                 <label class="col-sm-1 control-label no-padding-right" for="form-field-1">
-                                    起拍价 </label>
+                                    价格 </label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="start_price" id="seotitle" placeholder="起拍价"
-                                           class="col-xs-10 col-sm-5" value="{$shop['start_price']}">
+                                    <input type="text" name="price" id="seotitle" placeholder="商品价格(积分,反拍额兑换的货币)"
+                                           class="col-xs-10 col-sm-5" value="0.00">
                                     <span style="display: none" class="help-inline col-xs-12 col-sm-7">
 												<span class="middle">如果设置SEO标题，将会在IE标题栏显示SEO标题。</span>
 											</span>
@@ -81,52 +68,26 @@
 
                             <div class="space-4"></div>
 
+
                             <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2">
-                                    加拍幅度 </label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="additional_shot_range"  placeholder="关键词"
-                                           class="col-xs-10 col-sm-5" value="{$shop['additional_shot_range']}">
-                                    <span style="display: none" class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">文章关键词。</span>
+                            <label class="col-sm-1 control-label no-padding-right" for="form-field-2">
+                                商品库存 </label>
+                            <div class="col-sm-9">
+                                <input type="text" name="count"  placeholder="商品库存"
+                                       class="col-xs-10 col-sm-5" value="0">
+                                <span style="display: none" class="help-inline col-xs-12 col-sm-7">
+												<span class="middle">商品库存。</span>
 											</span>
-                                </div>
                             </div>
-
-                            <div class="space-4"></div>
-
+                        </div>
                             <div class="form-group">
                                 <label class="col-sm-1 control-label no-padding-right" for="form-field-2">
-                                    参考价 </label>
+                                    运费 </label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="reference_price"  placeholder="参考价"
-                                           class="col-xs-10 col-sm-5" value="{$shop['reference_price']}">
+                                    <input type="text" name="freight"  placeholder="商品运费"
+                                           class="col-xs-10 col-sm-5" value="0.00">
                                     <span style="display: none" class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">参考价。</span>
-											</span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2">
-                                    最高成交价 </label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="high_price"  placeholder="最高成交价"
-                                           class="col-xs-10 col-sm-5" value="{$shop['high_price']}">
-                                    <span style="display: none" class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">最高成交价。</span>
-											</span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2">
-                                    保证金 </label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="guaranty"  placeholder="保证金"
-                                           class="col-xs-10 col-sm-5" value="{$shop['guaranty']}">
-                                    <span style="display: none" class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">保证金。</span>
+												<span class="middle">运费。</span>
 											</span>
                                 </div>
                             </div>
@@ -135,7 +96,7 @@
                                 <label class="col-sm-1 control-label no-padding-right" for="form-field-0">
                                     状态 </label>
                                 <div class="col-sm-9">
-                                    <select  name="status" class="col-xs-10 col-sm-5" style="font-size: 13px;">
+                                    <select  name="status" class="col-xs-10 col-sm-5">
                                         <option value="0">上架</option>
                                         <option value="1">下架</option>
 
@@ -151,7 +112,7 @@
                                 <label class="col-sm-1 control-label no-padding-right" for="form-field-0">
                                     商品简介 </label>
                                 <div class="col-sm-9">
-                                    <textarea name="short_show" style="height:154px;width: 377px;">{$shop['short_show']}</textarea>
+                                    <textarea name="brief" style="height:154px;width: 377px;"></textarea>
                                 </div>
                             </div>
 
@@ -212,7 +173,7 @@
             if (sid == 0) {
                 bootbox.dialog({
                     title: '友情提示：',
-                    message: "文章分类必须选择。",
+                    message: "商品名必须选择。",
                     buttons: {
                         "success": {
                             "label": "确定",
@@ -225,7 +186,7 @@
             if (title == '') {
                 bootbox.dialog({
                     title: '友情提示：',
-                    message: "文章标题必须填写。",
+                    message: "积分商品名必须填写。",
                     buttons: {
                         "success": {
                             "label": "确定",
@@ -238,7 +199,7 @@
             if (detail == '') {
                 bootbox.dialog({
                     title: '友情提示：',
-                    message: "文章内容需要填写。",
+                    message: "商品简介需要填写。",
                     buttons: {
                         "success": {
                             "label": "确定",

@@ -3,33 +3,6 @@
 <body class="no-skin">
 <include file="Public/header"/>
 
-<div id="shuru" style="display: none">
-
-        <span style="margin-left: 59px;">
-        <select name="session_id" id="session_id" >
-            <option value="">场次选择下拉框</option>
-            <volist name="sessions"  id="session">
-
-            <option value="{$session['id']}">{$session['name']}--{$session['time']|date="Y-m-d H:i:s",###}</option>
-            </volist>
-        </select>
-        </span>
-        <br>
-
-        <span  style="display:block;margin-top: 10px;margin-left: 59px">
-            <input type="text" id="start_time" name="start_time" size="25" placeholder="开始时间" readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy-M-d HH:mm'})">
-        </span>
-
-        <span style="display:block;margin-top: 10px;color:red;margin-left: 59px">开始时间请填在场次时间之后的一小时内</span>
-        <br>
-        <span style="display:block;margin-top: 10px;margin-left: 59px">
-            <input type="text" id="end_time" name="end_time" size="25" placeholder="结束时间"  readonly="readonly" onfocus="WdatePicker({dateFmt:'yyyy-M-d HH:mm'})">
-        </span>
-
-        <span style="display:block;margin-top: 10px;color: red;margin-left: 59px">结束时间请填在开始时间以后，场次时间之后的一小时内</span>
-
-
-
 </div>
 
 <div class="main-container" id="main-container">
@@ -55,8 +28,8 @@
                         <!-- PAGE CONTENT BEGINS -->
                         <div class="cf">
                             <form class="form-inline" action="" method="get">
-                                <a class="btn btn-info" href="{:U('add')}" value="">新增</a>
-                                <a class="btn btn-info" id="ddd" value="">拍卖商品场次</a>
+                                <a class="btn btn-info" href="{:U('integral/add')}" value="">新增</a>
+
 
                                 <label class="inline">商品标题</label>
                                 <input type="text" name="keyword" value="{:I('keyword')}" class="form-control">
@@ -82,9 +55,9 @@
                                 <tr>
                                     <th class="center"><input class="check-all" type="checkbox" value=""></th>
                                     <th class="col-xs-7">商品名称</th>
-                                    <th>起拍价</th>
-                                    <th>加拍幅度</th>
-                                    <th>参考价</th>
+                                    <th>商品图片</th>
+                                    <th>商品库存</th>
+                                    <th>商品价格</th>
                                     <th>历史最高价</th>
                                     <th>保证金</th>
                                     <th>状态</th>
@@ -93,7 +66,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <volist name="list" id="val">
+                                <volist name="data" id="val">
                                     <tr>
                                         <td class="center"><input class="ids" type="checkbox" name="ids[]"
                                                                   value="{$val['id']}"></td>
@@ -200,7 +173,7 @@
                 for(k in obj)
                 {
                     if(obj[k].checked)
-                    check_val.push(obj[k].value);
+                        check_val.push(obj[k].value);
                 }
                 // alert(check_val);
                 var start_time = $("input[name='start_time']").val();

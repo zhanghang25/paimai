@@ -19,6 +19,8 @@ define('APP_DEBUG',true);
 
 //define('BIND_MODULE','Home');//绑定Home模块到当前入口文件，可用于新增Home模块
 //定义配置文件目录
+define('ROOT_PATH', __DIR__);
+define('UPLOAD_PATH', '/Public/Uploads/');
 define('CONFIG_PATH','./App/Common/Conf/');
 // 定义应用目录
 define('APP_PATH','./App/');
