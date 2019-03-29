@@ -12,6 +12,7 @@
             if (session ('hid')){
                 $user=M('user');
                 $user=$user->where ('id='.session ('hid'))->find();
+               
                 $this->assign('user',$user);
                 $this->display ('User/geren');
                 exit;
@@ -22,13 +23,13 @@
             $data=I('post.');
             $user=M('user');
             $password=md5(I('post.password').config['salt']);
-            $data=$user->where ("phone_num=".$data['mobile']." and status=1"." and password='".$password."'")->find ();
+            $data=$user->where ("phone_num='".$data['mobile']."' and status=1"." and password='".$password."'")->find ();
             
             if ($data){
                 
                 session('hid',$data['id']);
 
-                $this->ajaxReturn (array('code'=>1,'msg'=>'登陆成功','url'=>U('home/index/index')));
+               
 
                 $this->ajaxReturn (array('code'=>1,'msg'=>'登陆成功','url'=>U('home/user/geren')));
 
@@ -38,6 +39,10 @@
         }
            public function geren(){
                if (session ('hid')){
+                   $user=M('user');
+                   $user=$user->where ('id='.session ('hid'))->find();
+                  
+                   $this->assign('user',$user);
                    $this->display ('User/geren');
                    exit;
                }

@@ -74,6 +74,7 @@ class ComController extends BaseController
         $menu = M('auth_rule')->field('id,title,pid,name,icon')->where("islink=1 $menu_where ")->order('o ASC')->select();
         $menu = $this->getMenu($menu);
         $this->assign('menu', $menu);
+        
 
     }
 
