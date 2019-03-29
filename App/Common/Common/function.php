@@ -9,7 +9,15 @@
  *
  **/
 
-
+function getAccount($user_id,$time,$amount,$type,$mold)
+{
+    $data['user_id'] = $user_id;
+    $data['time'] = $time;
+    $data['amount'] = $amount;
+    $data['type'] = $type;
+    $data['mold'] = $mold;
+    M('account')->data($data)->add();
+}
 
 function getMillisecond() {
     list($t1, $t2) = explode(' ', microtime());

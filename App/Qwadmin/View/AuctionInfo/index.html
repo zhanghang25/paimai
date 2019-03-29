@@ -54,7 +54,7 @@
                                 <tr>
                                     <th class="center"><input class="check-all" type="checkbox" value=""></th>
                                     <th class="col-xs-3">拍卖商品信息名称</th>
-                                    <th>场次开始时间</th>
+                                    <th>拍卖开始时间</th>
                                     <th>拍卖信息状态</th>
 
                                     <th>操作</th>
@@ -67,7 +67,7 @@
                                                                   value="{$val['id']}"></td>
 
                                         <td>{$val['shop_name']}</td>
-                                        <td>{$val['session_time']|date="Y-m-d H:i:s",###}</td>
+                                        <td>{$val['start_time']|date="Y-m-d H:i:s",###}</td>
                                         <td>{$val['status']}</td>
 
                                         <td><a href="{:U('edit',array('aid'=>$val['id']))}"><i

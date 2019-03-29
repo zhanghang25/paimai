@@ -23,6 +23,7 @@ class AuctionInfoController extends ComController
 
         $success_man = M('user')->field('name')->where('id='.$auction_info['user_id'])->find();
         //给成交人姓名赋值
+
         $this->assign('success_man',$success_man['name']);
         }
         if($auction_info['auction_person']){
@@ -147,10 +148,10 @@ class AuctionInfoController extends ComController
             $where .= "and {$prefix}auction_info.shop_name like '%{$keyword}%' ";
         }
         //默认按照时间降序
-        $orderby = "session_time desc";
+        $orderby = "start_time desc";
         if ($order == "asc") {
 
-            $orderby = "session_time asc";
+            $orderby = "start_time asc";
         }
 
 

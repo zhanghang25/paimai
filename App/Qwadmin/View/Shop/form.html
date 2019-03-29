@@ -136,8 +136,8 @@
                                     状态 </label>
                                 <div class="col-sm-9">
                                     <select  name="status" class="col-xs-10 col-sm-5">
-                                        <option value="0">上架</option>
-                                        <option value="1">下架</option>
+                                        <option value="0" <if condition="$shop['status'] eq 0">selected="selected"</if> >上架</option>
+                                        <option value="1" <if condition="$shop['status'] eq 1">selected="selected"</if> >下架</option>
 
                                     </select>
 
