@@ -68,6 +68,16 @@ class AuctionShopController extends ComController
             M('bidding')->where("auction_id=".$auction_id)->setInc('status',2);
             M('bidding')->where('id='.$biddings[0]['id'])->setDec('status',1);
 
+            $logistic['sid'] = $auction['shop_id'];
+            $logistic['status'] = 0;
+            $logistic['uid'] = $success_man['id'];
+            $logistic['placetime'] = time();
+            $logistic['logistics_price'] = 0;
+            $logistic['shop_name'] = $auction['shop_name'];
+            $logistic['shop_price'] = $biddings[0]['price'] ;
+            $logistic['pic'] = $auction['thumbnail'];
+
+            M('logistics')->data($logistic)->add();
 
         }
 
@@ -185,6 +195,18 @@ class AuctionShopController extends ComController
 
             M('bidding')->where("auction_id=".$auction_id)->setInc('status',2);
             M('bidding')->where('id='.$biddings[0]['id'])->setDec('status',1);
+
+            $logistic['sid'] = $test_auction['shop_id'];
+            $logistic['status'] = 0;
+            $logistic['uid'] = $success_man['id'];
+            $logistic['placetime'] = time();
+            $logistic['logistics_price'] = 0;
+            $logistic['shop_name'] = $test_auction['shop_name'];
+            $logistic['shop_price'] = $high_price ;
+            $logistic['pic'] = $test_auction['thumbnail'];
+
+            M('logistics')->data($logistic)->add();
+
         }
 
         $this->ajaxReturn($data1);

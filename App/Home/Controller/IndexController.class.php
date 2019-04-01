@@ -70,9 +70,11 @@ class IndexController extends ComController
         }else{
             $timedate = "";
         }
+        $where['status'] = array('eq',1);
+        $list1 = M('auction_info')->where($where)->order("start_time ASC")->select();
 
         $this->assign('timedate',$timedate);
-        $this->assign('auction_infos',$list);
+        $this->assign('auction_infos',$list1);
         $this->display();
     }
 
@@ -107,8 +109,10 @@ class IndexController extends ComController
 
 
             }
+            $where['status'] = 1;
+            $list1 = M('auction_info')->where($where)->order('start_time',ASC)->select();
 
-            $data['data'] = $list;
+            $data['data'] = $list1;
         }elseif($now_time>$session_end_time){
             $timedate = "已结束";
         }else{
