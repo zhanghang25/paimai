@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>支付页面</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="row" style="margin:15px; 0;">
+        <div class="col-md-12">
+
+            <a href={:U('Order/address',array('id'=>$data['id']))}>
+                <div class="bp-div5 clearfix">
+                    <div class="clearfix">
+                        <input type="hidden" id="address_id" name="address_id" value="{$address['id']}" class="info">
+
+                        <span class="fl ad-span1">{$address['name']}
+                                            </span>
+                        <span class="fr ad-span1">{$address['phone_num']}</span>
+                    </div>
+                    <p class="ad-p1">{$address['province']}{$address['city']}{$address['county']}{$address['detailed']}</p>
+                </div>
+            </a>
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>付款人</th>
+                        <th>{$user.name}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>付款金额</td>
+                        <td>{$pay_amount}</td>
+                    </tr>
+
+                    <tr>
+                        <td>订单号</td>
+                        <td>{$auction.bianhao}</td>
+                    </tr>
+
+                    <tr>
+                        <td>下单时间</td>
+                        <td>{$auction.placetime|date="Y-m-d H:i:s",###}</td>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <form class="form-inline" method="post" action="{$tjurl}    ">
+                <?php
+                foreach ($native as $key => $val) {
+                echo '<input type="hidden" name="' . $key . '" value="' . $val . '">';
+                }
+                ?>
+                <button type="submit" class="btn btn-success btn-lg">扫码支付</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+</body>
+</html>

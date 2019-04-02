@@ -26,29 +26,16 @@
 </div>
 
 <ul class="s-ul1">
-    <a href="http://weizhong.yimei.cn/home/singlepage/problems">
+     <volist name="data" id="val">
+    <a href={:U('integral/article',array('id'=>$val['aid']))}>
     <li class="clearfix">
-            <img src="__PUBLIC__/huser/setup/logo14.png" class="c-img2 fl">
-            <span class="s-span1 fl">常见问题</span>
+            <img src={$val['thumbnail']} class="c-img2 fl">
+            <span class="s-span1 fl">{$val['title']}</span>
             <img src="__PUBLIC__/huser/setup/logo2.png" class="c-img1 fr">
 
     </li>
     </a>
-    <a href={:U('home/personal/service')}>
-    <li class="clearfix">
-            <img src="__PUBLIC__/huser/setup/logo15.png" class="c-img2 fl">
-            <span class="s-span1 fl">服务协议</span>
-            <img src="__PUBLIC__/huser/setup/logo2.png" class="c-img1 fr">
-    </li>
-    </a>
-    <a href="http://weizhong.yimei.cn/home/singlepage/aboutus">
-    <li class="clearfix">
-            <img src="__PUBLIC__/huser/setup/logo16.png" class="c-img2 fl">
-            <span class="s-span1 fl">关于我们</span>
-            <img src="__PUBLIC__/huser/setup/logo2.png" class="c-img1 fr">
-    </li>
-    </a>
-
+     </volist>
 <input type="hidden" id="url" value={:U('home/user/layout')}>
 </ul>
 

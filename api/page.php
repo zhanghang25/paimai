@@ -8,7 +8,7 @@ header('Content-type:text/html;charset=utf-8');
             "transaction_id" =>  $_REQUEST["transaction_id"], // 流水号
             "returncode" => $_REQUEST["returncode"]
         );
-        $md5key = "t4ig5acnpx4fet4zapshjacjd9o4bhbi";
+        $md5key = "wtxemijw85ugrqzng7s1lf01niz69qg4";
         ksort($returnArray);
         reset($returnArray);
         $md5str = "";

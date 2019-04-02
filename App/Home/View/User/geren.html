@@ -21,7 +21,7 @@
 
 <div class="header">
 	<a onclick="javascript:history.back(-1);"><img src="__PUBLIC__/huser/geren/back1.png" class="h-img1"></a>
-	  我的	<a href={:U('home/user/1')}><img src="__PUBLIC__/huser/geren/help.png" class="h-img"></a>
+	  我的	<a href={:U('index/articles',array('id'=>1))}><img src="__PUBLIC__/huser/geren/help.png" class="h-img"></a>
 </div>
 <a href={:U('home/Personal/info')}>
 <div class="p-div1 clearfix">
@@ -54,7 +54,7 @@
                 <p class="d-p3">分销中心</p>
         </li>
         </a>
-        <a href="http://weizhong.yimei.cn/home/singlepage/newhand">
+        <a href={:U('index/articles',array('id'=>1))}>
         <li>
                 <img src="__PUBLIC__/huser/geren/logo6.png" class="p-img3">
                 <p class="d-p3">新手帮助</p>
@@ -78,14 +78,14 @@
             <img src="__PUBLIC__/huser/geren/logo2.png" class="p-img5 fr">
     </li>
     </a>
-    <a href="http://weizhong.yimei.cn/home/singlepage/customer">
+    <a href={:U('index/articles',array('id'=>2))}>
     <li class="clearfix">
             <img src="__PUBLIC__/huser/geren/logo9.png" class="p-img4 fl">
             <span class="p-span1">客服中心</span>
             <img src="__PUBLIC__/huser/geren/logo2.png" class="p-img5 fr">
     </li>
     </a>
-    <a href="http://weizhong.yimei.cn/home/integral/index">
+    <a href={:U('integral/index')}>
     <li class="clearfix">
             <img src="__PUBLIC__/huser/geren/logo10.png" class="p-img4 fl">
             <span class="p-span1">积分商城</span>
@@ -93,7 +93,7 @@
     </li>
     </a>
 </ul>
-<a href={:u('home/personal/setup')}>
+<a href={:U('home/personal/setup',array('id'=>3))}>
 <div class="clearfix" style="    padding: 0.24rem;">
         <img src="__PUBLIC__/huser/geren/logo11.png" class="p-img4 fl">
         <span class="p-span1">设置</span>

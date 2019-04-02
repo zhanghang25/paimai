@@ -211,4 +211,21 @@ class IndexController extends ComController
         $this -> display();
     }
     */
+    public function articles(){
+        $id=I('get.id');
+        $set=M('category');
+        $article=M('article');
+        $data=$set->where ('dir='.$id)->find ();
+        if ($data){
+            $data1=$article->where ('sid='.$data['id'])->find ();
+        }
+        if (!$data1){
+            $data1=array();
+        }
+        $data1["content"]=htmlspecialchars_decode($data1['content']);
+        
+        $this->assign('data',$data1);
+        
+        $this->display('user/1');
+    }
 }
