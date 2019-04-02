@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://weizhong.yimei.cn/home/integral/index -->
+<html style="font-size: 54.8px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>积分商城</title> 
+    <script src="__PUBLIC__/huser/jifen/jquery.1.9.1.js.下载"></script>
+    <script type="text/javascript" src="__PUBLIC__/huser/jifen/rem.js.下载"></script>
+    <link href="__PUBLIC__/huser/jifen/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/huser/jifen/jquery.hiSlider.min.css">
+    
+    <link type="text/css" href="__PUBLIC__/huser/jifen/jq22.css" rel="stylesheet">
+</head>
+<body>
+<div class="" id="load"></div>
+<script>
+    window.onload = function() {
+        document.getElementById('load').className='';
+    };
+</script>
+
+<div class="header">
+	<a onclick="javascript:history.back(-1);"><img src="__PUBLIC__/huser/jifen/back1.png" class="h-img1"></a>
+	  积分商城	<a href="http://weizhong.yimei.cn/home/singlepage/newhand"><img src="__PUBLIC__/huser/jifen/help.png" class="h-img"></a>
+</div>
+<div class="im-div1">
+    <span class="im-span1">我的积分:</span>
+    <span class="im-span2">{$fen['point']}</span>
+    <span class="im-span1">我的反拍额:</span>
+    <span class="im-span2">{$fen['anti_money']}</span>
+</div>
+<div class="im-div2">
+    积分兑换
+</div>
+
+<ul class="im-ul1 clearfix">
+   <foreach name="data" item="jk">
+            <a href={:U('integral/lists',array('id'=>$jk['id']))}>
+        <li>
+                <img src={$jk['thumbnail']} class="im-img1">
+                <p class="im-p1">{$jk['name']}</p>
+                <p class="im-p2" style="font-size: 12px;">售价：{$jk['e_price']}反拍额+{$jk['fen_price']}积分   剩余{$jk['count']}件</p>
+
+       <div class="im-div4">立即兑换</div>
+        </li>
+        </a>
+</foreach>
+    
+</ul>
+
+
+
+</body></html>

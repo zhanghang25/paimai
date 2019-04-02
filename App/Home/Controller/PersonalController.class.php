@@ -17,6 +17,18 @@
           }
         }
         public function setup(){
+            $id=I('get.id');
+            $set=M('category');
+            $article=M('article');
+            $data=$set->where ('dir='.$id)->find ();
+            if ($data){
+                $data1=$article->where ('sid='.$data['id'])->select ();
+            }
+            if (!$data1){
+                $data1=array();
+            }
+            $this->assign('data',$data1);
+        
             return $this->display('user/setup');
         }
         public function info(){
@@ -95,6 +107,7 @@
             public function service(){
              return $this->display('personal/4');
             }
+            
        
         
         

@@ -27,14 +27,14 @@
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
                         <div class="cf">
-                            <form class="form-inline" action="" method="get">
+                            <form class="form-inline" action={:U('integral/sel')} method="get">
                                 <a class="btn btn-info" href="{:U('integral/add')}" value="">新增</a>
 
 
                                 <label class="inline">商品标题</label>
                                 <input type="text" name="keyword" value="{:I('keyword')}" class="form-control">
 
-                                <label class="inline">&nbsp;&nbsp;文章排序：</label>
+                                <label class="inline">&nbsp;&nbsp;商品排序：</label>
                                 <select name="order" class="form-control">
                                     <option value="desc" <if condition="I('order') eq desc">selected</if>>发布时间降序</option>
                                     <option value="asc" <if condition="I('order') eq asc">selected</if> >发布时间升序</option>
@@ -57,11 +57,10 @@
                                     <th class="col-xs-7">商品名称</th>
                                     <th>商品图片</th>
                                     <th>商品库存</th>
-                                    <th>商品价格</th>
-                                    <th>历史最高价</th>
-                                    <th>保证金</th>
+                                    <th>所需商品积分</th>
+                                    <th>所需商品反拍额</th>
+                                    <th>运费</th>
                                     <th>状态</th>
-                                    <th>发布时间</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -72,13 +71,13 @@
                                                                   value="{$val['id']}"></td>
 
                                         <td>{$val['name']}</td>
-                                        <td>{$val['start_price']}</td>
-                                        <td>{$val['additional_shot_range']}</td>
-                                        <td>{$val['reference_price']}</td>
-                                        <td>{$val['high_price']}</td>
-                                        <td>{$val['guaranty']}</td>
-                                        <td>{$val['status']}</td>
-                                        <td>{$val['addtime']|date="Y-m-d H:i:s",###}</td>
+                                        <td><img src={$val['thumbnail']} width="30px"/></td>
+                                        <td>{$val['count']}</td>
+                                        <td>{$val['fen_price']}</td>
+                                        <td>{$val['e_price']}</td>
+                                        <td>{$val['freight']}</td>
+                                        <td><if condition="$val['status'] eq 1">可见<else/>不可见</if></td>
+
                                         <td><a href="{:U('edit',array('aid'=>$val['id']))}"><i
                                                 class="ace-icon fa fa-pencil bigger-100"></i>修改</a>&nbsp;&nbsp;<a
                                                 href="javascript:;" val="{:U('del',array('ids'=>$val['id']))}" class="del"><i
