@@ -76,6 +76,7 @@ class AuctionShopController extends ComController
             $logistic['shop_name'] = $auction['shop_name'];
             $logistic['shop_price'] = $biddings[0]['price'] ;
             $logistic['pic'] = $auction['thumbnail'];
+            $logistic['bianhao'] = 'E'.date("YmdHis").rand(100000,999999);
 
             M('logistics')->data($logistic)->add();
 
@@ -204,6 +205,7 @@ class AuctionShopController extends ComController
             $logistic['shop_name'] = $test_auction['shop_name'];
             $logistic['shop_price'] = $high_price ;
             $logistic['pic'] = $test_auction['thumbnail'];
+            $logistic['bianhao'] = 'E'.date("YmdHis").rand(100000,999999);
 
             M('logistics')->data($logistic)->add();
 

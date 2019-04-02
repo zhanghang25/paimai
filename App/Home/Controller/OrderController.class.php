@@ -27,4 +27,9 @@
 
             $this->display();
         }
+
+        public function oneStep()
+        {
+
+        }
     }
