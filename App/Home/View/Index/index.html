@@ -89,49 +89,33 @@
     <div class="box">
         <div class="t_news">
             <ul class="news_li">
-                <li><a href="http://weizhong.yimei.cn/#">恭喜彩贝以¥88.00拍得幸运红包 返150元</a></li>
-                <li><a href="http://weizhong.yimei.cn/#">恭喜我是兼职啊以¥100.00拍得幸运红包 返150元</a></li>
-                <li><a href="http://weizhong.yimei.cn/#">恭喜jlm456888以¥100.00拍得幸运红包 返150元</a></li>
+                <volist name="biddings" id="bidding">
+                    <li><a href="/">恭喜{$bidding.name}以¥{$bidding.price}拍得{$bidding.shop_name}</a></li>
+                </volist>
             </ul>
             <ul class="swap">
-                <li><a href="http://weizhong.yimei.cn/#">恭喜彩贝以¥88.00拍得幸运红包 返150元</a></li>
-                <li><a href="http://weizhong.yimei.cn/#">恭喜我是兼职啊以¥100.00拍得幸运红包 返150元</a></li>
-                <li><a href="http://weizhong.yimei.cn/#">恭喜jlm456888以¥100.00拍得幸运红包 返150元</a></li>
+```             <volist name="biddings" id="bidding">
+                <li><a href="/">恭喜{$bidding.name}以¥{$bidding.price}拍得{$bidding.shop_name}</a></li>
+            </volist>
+
             </ul>
         </div>
     </div>
 </div>
 <ul class="id-ul1 clearfix">
+    <volist name="biddings" id="bidding">
     <a href="http://weizhong.yimei.cn/home/bidding/detail/auction_id/4310/type/1">
         <li>
             <div class="pr">
-                <img src="__PUBLIC__/index/image/96753214c461257dfb4239b9ea6a7d73.jpg" class="id-img1">
+                <img src="{$bidding.thumbnail}" class="id-img1">
                 <img src="__PUBLIC__/index/image/logo1.png" class="id-logo">
             </div>
-            <p class="id-p1">¥88.00</p>
-            <p class="id-p2">彩贝</p>
+            <p class="id-p1">¥{$bidding.price}</p>
+            <p class="id-p2">{$bidding.name}</p>
         </li>
     </a>
-    <a href="http://weizhong.yimei.cn/home/bidding/detail/auction_id/4311/type/1">
-        <li>
-            <div class="pr">
-                <img src="__PUBLIC__/index/image/96753214c461257dfb4239b9ea6a7d73.jpg" class="id-img1">
-                <img src="__PUBLIC__/index/image/logo1.png" class="id-logo">
-            </div>
-            <p class="id-p1">¥100.00</p>
-            <p class="id-p2">我是兼职啊</p>
-        </li>
-    </a>
-    <a href="http://weizhong.yimei.cn/home/bidding/detail/auction_id/4312/type/1">
-        <li>
-            <div class="pr">
-                <img src="__PUBLIC__/index/image/96753214c461257dfb4239b9ea6a7d73.jpg" class="id-img1">
-                <img src="__PUBLIC__/index/image/logo1.png" class="id-logo">
-            </div>
-            <p class="id-p1">¥100.00</p>
-            <p class="id-p2">jlm456888</p>
-        </li>
-    </a>
+    </volist>
+
 </ul>
 <div class="timeLine" >
     <ul class="tl-hd clearfix" >
@@ -197,7 +181,7 @@
             </a>
         </li>
         <li>
-            <a href="http://weizhong.yimei.cn/home/index/deal">
+            <a href="{:U('Home/RecentDeal/showRecent')}">
                 <img src="__PUBLIC__/index/image/icon2.png" class="f-img2">
                 <p class="">最新成交</p>
 

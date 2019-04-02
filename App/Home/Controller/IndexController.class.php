@@ -14,6 +14,9 @@ use Vendor\Page;
 
 class IndexController extends ComController
 {
+
+
+
     public function index()
     {
         $time = time();
@@ -75,6 +78,16 @@ class IndexController extends ComController
 
         $this->assign('timedate',$timedate);
         $this->assign('auction_infos',$list1);
+        $biddings = M('bidding')    ->alias('b')
+            ->join("left join qw_user as u on b.user_id = u.id")
+            ->join("left join qw_auction_info as a on b.auction_id = a.id")
+            ->order('b.time desc')->limit(0,3)
+            ->field('b.*,a.thumbnail,u.name,a.shop_name')
+            ->where('b.status = 1')
+            ->select();
+        $this->assign('biddings',$biddings);
+
+
         $this->display();
     }
 
