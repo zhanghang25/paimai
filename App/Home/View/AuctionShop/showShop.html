@@ -92,7 +92,7 @@
             <p class="pd-p1">{$auction.short_show}</p>
             <div class="pd-div4 bidding_price">
                 <span class="pd-span3">当前价:</span>
-                <span class="pd-span4">¥{$auction.start_price}</span>
+                <span class="pd-span4">¥{$auction.success_price}</span>
             </div>
         </div>
         <div class="pd-div5">
@@ -188,9 +188,10 @@
 <input type="hidden" name="" id="add_price" value="{$auction.additional_shot_range}">
 <input type="hidden" name="" id="bidding_price" value="{$auction.start_price}">
 <input type="hidden" name="" id="url" value="{:U('add_bid')}">
-<input type="hidden" name="" id="res" value="0">
+<input type="hidden" name="" id="res" value="2">
 <input type="hidden" name="id" value="{$auction.id}">
 <input type="hidden" name="status" value="{$auction.status}" >
+<input type="hidden" name="success_price" value="{$auction.success_price}" >
 <input type="hidden" name="high_price" value="{$auction.high_price}">
 <div class="bid">
 

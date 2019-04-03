@@ -19,6 +19,7 @@ class IndexController extends ComController
 
     public function index()
     {
+
         $time = time();
         //获得当天的最前面5个场次
         $timd_duplicate =date('Y-m-d',$time);

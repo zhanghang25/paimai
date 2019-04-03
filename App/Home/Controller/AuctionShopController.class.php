@@ -54,6 +54,14 @@ class AuctionShopController extends ComController
                 $tmp_ids[] = $bidding['user_id'];
             }
             $ids = array_unique($tmp_ids);
+            $where['id'] = array('in',$ids);
+            M('user')->where($where)->setInc('guaranty',$auction['guaranty']);
+            M('user')->where($where)->setDec('freeze',$auction['guaranty']);
+            foreach($ids as $id)
+            {
+                getAccount($id,$time,$auction['guaranty'],9,1);
+                getAccount($id,$time,$auction['guaranty'],11,1);
+            }
             $updata_set['auction_person'] = implode(',',$ids);
             $update_set['user_id'] = $biddings[0]['user_id'];
             M('auction_info')->data($update_set)->where('id='.$auction['id'])->save();
@@ -69,7 +77,7 @@ class AuctionShopController extends ComController
             M('bidding')->where('id='.$biddings[0]['id'])->setDec('status',1);
 
             $logistic['sid'] = $auction['shop_id'];
-            $logistic['status'] = 0;
+            $logistic['status'] = 1;
             $logistic['uid'] = $success_man['id'];
             $logistic['placetime'] = time();
             $logistic['logistics_price'] = 0;
@@ -180,6 +188,15 @@ class AuctionShopController extends ComController
                 $tmp_ids[] = $bidding['user_id'];
             }
             $ids = array_unique($tmp_ids);
+
+            $where['id'] = array('in',$ids);
+            M('user')->where($where)->setInc('guaranty',$auction['guaranty']);
+            M('user')->where($where)->setDec('freeze',$auction['guaranty']);
+            foreach($ids as $id)
+            {
+                getAccount($id,$time,$auction['guaranty'],9,1);
+                getAccount($id,$time,$auction['guaranty'],11,1);
+            }
             $data2['auction_person'] = implode(',',$ids);
 
             //拍卖信息入库
@@ -198,7 +215,7 @@ class AuctionShopController extends ComController
             M('bidding')->where('id='.$biddings[0]['id'])->setDec('status',1);
 
             $logistic['sid'] = $test_auction['shop_id'];
-            $logistic['status'] = 0;
+            $logistic['status'] = 1 ;
             $logistic['uid'] = $success_man['id'];
             $logistic['placetime'] = time();
             $logistic['logistics_price'] = 0;
