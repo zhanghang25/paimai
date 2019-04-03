@@ -210,11 +210,11 @@
                                 <label class="col-sm-1 control-label no-padding-right" for="form-field-0">
                                     状态 </label>
                                 <div class="col-sm-9">
-                                    <select  name="status" class="col-xs-10 col-sm-5">
-                                        <option value="0">未开拍</option>
-                                        <option value="1">参拍中</option>
-                                        <option value="2">已拍出</option>
-                                        <option value="3">流拍</option>
+                                    <select  name="status" class="col-xs-10 col-sm-5" disabled="disabled">
+                                        <option value="0" <if condition="$auction_info['status'] eq 0">selected="selected"</if> >未开拍</option>
+                                        <option value="1" <if condition="$auction_info['status'] eq 1">selected="selected"</if> >参拍中</option>
+                                        <option value="2" <if condition="$auction_info['status'] eq 2">selected="selected"</if>>已拍出</option>
+                                        <option value="3" <if condition="$auction_info['status'] eq 3">selected="selected"</if>>流拍</option>
 
                                     </select>
 

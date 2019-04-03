@@ -174,8 +174,14 @@
         <div class="pd-div15 fl  numble" style="margin-left: 50px;">1</div>
     </div>
     <div class="pd-div12 pd-red fr">
+        <if condition="$auction['status'] eq 1">
         <p class="pd-p5">出价</p>
         <p class="pd-p6">¥{$auction.additional_shot_range}/次</p>
+            <elseif condition="$auction['status'] eq 2" />
+                <p class="pd-p5">拍卖结束</p>
+            <else />
+            <p class="pd-p5">还未开始</p>
+        </if>
     </div>
 </div>
 
@@ -240,6 +246,7 @@
 </script>
 <script>
     $('.pd-div12').click(function(){
+
         var res = $('#res').val();
         var auction_id = $("input[name='id']").val();
         var status = $("input[name='status']").val();
@@ -259,9 +266,11 @@
                 data:{auction_id:auction_id,res:res},
                 type:"Post",
                 success:function(data){
-                //console.log(data.data);
+                // console.log(data.data);
                 if(data.data == 0){
                     $('.bond,.bid-div_2').toggle();
+                }else if(data.data == 1){
+                    noty({text: data['msg'], layout: "center",type: 'error',timeout: 4000});
                 }else if(data.data == 2){
                     var add_price = $('#add_price').val();
                     var bidding_price = $('#bidding_price').val();
@@ -270,11 +279,15 @@
                     $('.bid-numble').text(price);
                     $('.bid,.bid-div_1').toggle();
                     $('#res').val(1);
-                }else{
+                }else if(data.data == 3){
                     //var num = $('.numble').text();
                     noty({text: data['msg'], layout: "center",type: 'error',timeout: 4000});
-                }},
+                }else if(data.data == 4)
+                    noty({text: data['msg'], layout: "center",type: 'error',timeout: 4000});
+
+                },
                 error:function(data){
+
                 console.log(data);
                 layer.msg("出错了！！");
             }
@@ -321,7 +334,7 @@
         formdata.append('price', price);
         formdata.append('add_price',add_price);
         formdata.append('high_price',high_price);
-        ajaxplay(__self,formdata)
+        ajaxplay(__self,formdata);
     }
     var ref = '';
 
@@ -401,9 +414,14 @@
                         $('#bidding_price').val(data[0]['price']);
                     }
 
+                    if(data[0] == undefined){
 
+                    $('.bidding_price .pd-span4').text('¥'+ccc);
+                    }else{
                     $('.bidding_price .pd-span4').text('¥'+data[0]['price']);
-                    $('#res').val(1);
+
+                    }
+                    // $('#res').val(1);
                 }
 
             }
@@ -504,13 +522,32 @@
                 $('#loading').html("");
                 //var auction_id = 4565;
                 //$.get("/home/bidding/setmemcache", { auction_id: auction_id},function(){
+                if(data['error'] =1){
+
                 noty({text: data['msg'], layout: "center", type: 'success', timeout: 1400});
-                setTimeout('window.location="' + data['url'] + '"', 1400);
+                }else{
+
+                noty({text: data['msg'], layout: "center", type: 'success', timeout: 1400});
+                }
+                if(data['code'] ==1)
+                {
+                    $('.bid,.bid-div_1').toggle();
+                    $('#res').val(0);
+                    $('.pd-div12').html("<p class=\"pd-p5\">拍卖结束</p>")
+                    $('.pd-div1').html("已结束");
+                    $('.pd-div2').html('');
+
+
+                }
+
+
+                $(_self).prop("disabled",false);
+                // setTimeout('window.location="' + data['url'] + '"', 1400);
                 //});
             },
             error:function(data){
                     $('#loading').html("");
-                alert(data['test']);
+                    alert(111);
                     $(_self).prop("disabled",false);
 
                     noty({text: data['msg'], layout: "center",type: 'error',timeout: 4000});

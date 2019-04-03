@@ -12,7 +12,7 @@
             if (session ('hid')){
                 $user=M('user');
                 $user=$user->where ('id='.session ('hid'))->find();
-               
+
                 $this->assign('user',$user);
                 $this->display ('User/geren');
                 exit;

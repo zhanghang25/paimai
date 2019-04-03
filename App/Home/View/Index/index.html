@@ -89,49 +89,33 @@
     <div class="box">
         <div class="t_news">
             <ul class="news_li">
-                <li><a href="http://weizhong.yimei.cn/#">恭喜彩贝以¥88.00拍得幸运红包 返150元</a></li>
-                <li><a href="http://weizhong.yimei.cn/#">恭喜我是兼职啊以¥100.00拍得幸运红包 返150元</a></li>
-                <li><a href="http://weizhong.yimei.cn/#">恭喜jlm456888以¥100.00拍得幸运红包 返150元</a></li>
+                <volist name="biddings" id="bidding">
+                    <li><a href="/">恭喜{$bidding.name}以¥{$bidding.price}拍得{$bidding.shop_name}</a></li>
+                </volist>
             </ul>
             <ul class="swap">
-                <li><a href="http://weizhong.yimei.cn/#">恭喜彩贝以¥88.00拍得幸运红包 返150元</a></li>
-                <li><a href="http://weizhong.yimei.cn/#">恭喜我是兼职啊以¥100.00拍得幸运红包 返150元</a></li>
-                <li><a href="http://weizhong.yimei.cn/#">恭喜jlm456888以¥100.00拍得幸运红包 返150元</a></li>
+```             <volist name="biddings" id="bidding">
+                <li><a href="/">恭喜{$bidding.name}以¥{$bidding.price}拍得{$bidding.shop_name}</a></li>
+            </volist>
+
             </ul>
         </div>
     </div>
 </div>
 <ul class="id-ul1 clearfix">
+    <volist name="biddings" id="bidding">
     <a href="http://weizhong.yimei.cn/home/bidding/detail/auction_id/4310/type/1">
         <li>
             <div class="pr">
-                <img src="__PUBLIC__/index/image/96753214c461257dfb4239b9ea6a7d73.jpg" class="id-img1">
+                <img src="{$bidding.thumbnail}" class="id-img1">
                 <img src="__PUBLIC__/index/image/logo1.png" class="id-logo">
             </div>
-            <p class="id-p1">¥88.00</p>
-            <p class="id-p2">彩贝</p>
+            <p class="id-p1">¥{$bidding.price}</p>
+            <p class="id-p2">{$bidding.name}</p>
         </li>
     </a>
-    <a href="http://weizhong.yimei.cn/home/bidding/detail/auction_id/4311/type/1">
-        <li>
-            <div class="pr">
-                <img src="__PUBLIC__/index/image/96753214c461257dfb4239b9ea6a7d73.jpg" class="id-img1">
-                <img src="__PUBLIC__/index/image/logo1.png" class="id-logo">
-            </div>
-            <p class="id-p1">¥100.00</p>
-            <p class="id-p2">我是兼职啊</p>
-        </li>
-    </a>
-    <a href="http://weizhong.yimei.cn/home/bidding/detail/auction_id/4312/type/1">
-        <li>
-            <div class="pr">
-                <img src="__PUBLIC__/index/image/96753214c461257dfb4239b9ea6a7d73.jpg" class="id-img1">
-                <img src="__PUBLIC__/index/image/logo1.png" class="id-logo">
-            </div>
-            <p class="id-p1">¥100.00</p>
-            <p class="id-p2">jlm456888</p>
-        </li>
-    </a>
+    </volist>
+
 </ul>
 <div class="timeLine" >
     <ul class="tl-hd clearfix" >
@@ -167,7 +151,7 @@
                                 <p class="tb-p3">当前价:{$auc_info['success_price']}元</p>
                                 <div class="clearfix">
                                     <span class="tb-span1">{$auc_info['success_times']}次出价</span>
-                                    <div class="tb-div2 bc-grey fr"><if condition="$auc_info['status'] eq 0" > {$auc_info['start_time']|date="H:i:s",###} <else />正在进行</if> </div>
+                                    <div class="tb-div2 bc-grey fr"><if condition="$auc_info['status'] eq 0" > {$auc_info['start_time']|date="H:i:s",###} <elseif condition="$auc_info['status'] eq 1" />正在进行<else />已结束</if> </div>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +172,7 @@
 </ul>
 <div class="f-dj"></div>
 <div class="footer">
-    <ul class="clearfix f-ul">
+    <ul class="clearfix f-ul" >
         <li class="current">
             <a href="/">
                 <img src="__PUBLIC__/index/image/icon1h.png" class="f-img2">
@@ -197,7 +181,7 @@
             </a>
         </li>
         <li>
-            <a href="http://weizhong.yimei.cn/home/index/deal">
+            <a href="{:U('Home/RecentDeal/showRecent')}">
                 <img src="__PUBLIC__/index/image/icon2.png" class="f-img2">
                 <p class="">最新成交</p>
 
@@ -205,17 +189,18 @@
             </a>
         </li>
         <li>
-            <a href="http://weizhong.yimei.cn/home/order/incase">
+            <a href={:U('pai/index')}>
                 <img src="__PUBLIC__/index/image/icon3.png" class="f-img2">
                 <p>参拍</p>
             </a>
         </li>
+        <a href="{:U('User/login')}">
         <li>
-            <a href="{:U('User/login')}">
+
                 <img src="__PUBLIC__/index/image/icon4.png" class="f-img2">
                 <p>我的</p>
-            </a>
         </li>
+            </a>
     </ul>
 </div>
 
@@ -267,7 +252,7 @@
                          time2 += change(date1.getMinutes()) + ":";
                          time2 += change(date1.getSeconds());
                     var tmp_id = data['data'][i]['id'];
-                    str += '<a href="{:U(\'AuctionShop/showShop\',array(\'id\'=>' + tmp_id +'))}">';
+                    str += '<a href="/index.php/Home/AuctionShop/showShop/id/' + tmp_id + '.html">';
                     str += '<li style="border-bottom: 1px solid #e0e0e0;padding: 0.15rem 0.23rem 0.28rem;">'
                     str += '<div class="clearfix">';
                     str += '<img src='+ data['data'][i]['thumbnail'] +' class="tb-img1 fl">';
