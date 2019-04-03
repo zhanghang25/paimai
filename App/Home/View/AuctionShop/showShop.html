@@ -255,7 +255,7 @@
             if (status == 1 && res == 1 ) {
 
                 var add_price = $('#add_price').val();
-                var bidding_price = $('#bidding_price').val();
+                var bidding_price = $('input[name="success_price"]').val();
                 var price = Number(add_price) + Number(bidding_price);
                 //var price = Number(add_price*num)+Number(bidding_price);
                 $('.bid-numble').text(price);
@@ -274,7 +274,7 @@
                     noty({text: data['msg'], layout: "center",type: 'error',timeout: 4000});
                 }else if(data.data == 2){
                     var add_price = $('#add_price').val();
-                    var bidding_price = $('#bidding_price').val();
+                    var bidding_price =  $('input[name="success_price"]').val();
                     var price = Number(add_price)+Number(bidding_price);
                     //var price = Number(add_price*num)+Number(bidding_price);
                     $('.bid-numble').text(price);
@@ -525,7 +525,7 @@
                 //$.get("/home/bidding/setmemcache", { auction_id: auction_id},function(){
                 if(data['error'] =1){
 
-                noty({text: data['msg'], layout: "center", type: 'success', timeout: 1400});
+                noty({text: data['msg'], layout: "center", type: 'error', timeout: 1400});
                 }else{
 
                 noty({text: data['msg'], layout: "center", type: 'success', timeout: 1400});

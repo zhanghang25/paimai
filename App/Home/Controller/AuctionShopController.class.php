@@ -244,7 +244,6 @@ class AuctionShopController extends ComController
 //            $data['code']  = 2;
 //            $this->ajaxReturn($data);
 //        }
-
      $data['data'] = M('bidding')
          ->alias('b')
          ->where(array('auction_id'=>$auction_id))
@@ -254,7 +253,9 @@ class AuctionShopController extends ComController
                                    ->field("b.*,u.name")
 //                                   ->field("b.*")
                                    ->select();
-   
+        $tmp['success_price'] = $data['data'][0]['price'];
+        M('auction_info')->where('id='.$auction_id)->data($tmp)->save();
+        $data['price'] = $tmp['success_price'];
       $data['length'] = count($data['data']);
         $this->ajaxReturn($data);
     }
