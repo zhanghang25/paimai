@@ -140,7 +140,7 @@ class AuctionShopController extends ComController
         $data['user_id'] = session('hid');
         $data['time'] = getMillisecond();
         $biddings2 = M('bidding')->where('auction_id='.$auction_id)->order("time desc")->select();
-        if($data['time']-$biddings2[0]['time']<4000)
+        if(getMillisecond()-$biddings2[0]['time']<4000)
         {
             $data5['code'] = 2;
             $data5['msg'] = "参与人数过多，请稍等";

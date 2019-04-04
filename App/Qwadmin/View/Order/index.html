@@ -38,7 +38,7 @@
                                     <option>请选择</option>
                                     <option value="1" <if condition="I('keyword1') eq 1">selected</if>>待付款</option>
                                     <option value="2" <if condition="I('keyword1') eq 2">selected</if> >待发货</option>
-                                    <option value="3" <if condition="I('keyword1') eq 3">selected</if> >待收货</option>
+                                    <option value="3" <if condition="I('keyword1') eq 3">selected</if> >已发货</option>
                                     <option value="4" <if condition="I('keyword1') eq 4">selected</if> >已收货</option>
 
                                 </select>
@@ -72,7 +72,7 @@
                                                                   value="{$val['id']}"></td>
 
                                         <td>{$val['bianhao']}</td>
-                                        <td><if condition="$val['status'] eq 0">待付款<elseif condition="$val['status'] eq 1" />待发货<elseif condition="$val['status'] eq 2" />已发货<elseif condition="$val['status'] eq 3" />已收货</if></td>
+                                        <td><if condition="$val['status'] eq 1">待付款<elseif condition="$val['status'] eq 2" />待发货<elseif condition="$val['status'] eq 3" />已发货<elseif condition="$val['status'] eq 4" />已收货</if></td>
                                         <td>{$val['placetime']|date="Y-m-d H:i:s",###}</td>
                                         <td>{$val['shop_price']}</td>
                                         <td>{$val['shop_name']}</td>
@@ -121,7 +121,7 @@
         $("#submit").click(function () {
             bootbox.confirm({
                 title: "系统提示",
-                message: "是否要删除所选拍卖信息？",
+                message: "是否要删除所选订单信息？",
                 callback: function (result) {
                     if (result) {
                         $("#form").submit();
@@ -140,7 +140,7 @@
             var url = $(this).attr('val');
             bootbox.confirm({
                 title: "系统提示",
-                message: "是否要该拍卖信息？",
+                message: "是否要该删除该订单信息？",
                 callback: function (result) {
                     if (result) {
                         window.location.href = url;

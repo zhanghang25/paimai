@@ -7,7 +7,23 @@
     <script src="__PUBLIC__/huser/address/jquery.1.9.1.js.下载"></script>
     <script type="text/javascript" src="__PUBLIC__/huser/address/rem.js.下载"></script>
     <link href="__PUBLIC__/huser/address/style.css" rel="stylesheet">
-
+    <style>
+        .ad-btn {
+            width: 6.7rem;
+            height: 0.8rem;
+            color: #fff;
+            font-size: 0.36rem;
+            font-family: 'PF Regular';
+            line-height: 0.8rem;
+            background: #fe5461;
+            text-align: center;
+            margin: 0px auto 10px;
+            /* position: absolute; */
+            bottom: 2.35rem;
+            left: 0;
+            right: 0;
+        }
+    </style>
 </head>
 <body>
 <div class="" id="load"></div>
@@ -22,6 +38,7 @@
 </div>
 
 <ul class="ad-ul1">
+    <if condition="$data eq null"><div class="ad-btn" style="position:absolute;bottom: 0.2rem;">请到个人中心添加收货地址</div></if>
     <foreach name="data" item="lk">
         <input type="hidden" name="address_id" value={$lk['id']}>
         <li>

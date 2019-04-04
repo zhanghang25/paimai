@@ -95,6 +95,33 @@
             $this->display ();
         }
 
+        public function  twoStep()
+        {
+            $id = I("get.id");
+            $logistic = M("logistics")->where('id='.$id)->find();
+            $this->assign('logistic',$logistic);
+            $this->assign('id',$id);
+            $this->display();
+
+        }
+
+        public function confirm()
+        {
+            $id = I("post.id");
+            $data['status'] = 4;
+            $result = M("logistics")->where("id=".$id)->data($data)->save();
+            if($result)
+            {
+                $data1['code'] = 1;
+                $data1['msg'] = "恭喜您，确认收货成功！";
+            }else{
+                $data1['msg'] = "很遗憾，确认收货失败！";
+            }
+
+            $this->ajaxReturn($data1);
+
+        }
+
         public function oneStep()
         {
             $user = M('user')->where('id='.session('hid'))->find();

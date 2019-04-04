@@ -46,10 +46,10 @@
 
 
 <ul class="mo-hd clearfix">
-    <li class="">
+    <li class="current">
         全部
     </li>
-    <li class="current">
+    <li class="">
         待付款
     </li>
     <li class="">
@@ -66,10 +66,13 @@
     <!--</li>-->
 </ul>
 <ul class="mo-bd">
-            <li class="">
+            <li class="current">
         <ul class="mo-ul1">
             <volist name="total" id="order">
-            <if condition="$order['status'] eq 0"><a href="{:U('Order/oneStep',array('id'=>$order['id']))}"><else /><a></if>
+            <if condition="$order['status'] eq 1"><a href="{:U('Order/oneStep',array('id'=>$order['id']))}">
+            <elseif condition="$order['status'] eq 3" /><a href="{:U('Order/twoStep',array('id'=>$order['id']))}"><else /><a>
+
+            </if>
             <li style="border-bottom: 1px solid #e0e0e0;padding: 0.15rem 0.23rem 0.28rem;">
                 <div class="clearfix">
                     <img src="{$order.pic}" class="tb-img1 fl">
@@ -88,7 +91,7 @@
 
                     </ul>
     </li>
-            <li class="current">
+            <li class="">
                 <ul class="mo-ul1">
                     <volist name="wait_pay" id="order">
                         <a href="{:U('Order/oneStep',array('id'=>$order['id']))}">
@@ -113,6 +116,7 @@
     <li class="">
         <ul class="mo-ul1">
             <volist name="wait_deal" id="order">
+
                 <li style="border-bottom: 1px solid #e0e0e0;padding: 0.15rem 0.23rem 0.28rem;">
                     <div class="clearfix">
                         <img src="{$order.pic}" class="tb-img1 fl">
@@ -133,6 +137,7 @@
     <li class="">
         <ul class="mo-ul1">
             <volist name="wait_delivery" id="order">
+                <a href="{:U('Order/twoStep',array('id'=>$order['id']))}">
                 <li style="border-bottom: 1px solid #e0e0e0;padding: 0.15rem 0.23rem 0.28rem;">
                     <div class="clearfix">
                         <img src="{$order.pic}" class="tb-img1 fl">
@@ -146,6 +151,7 @@
                         </div>
                     </div>
                 </li>
+                </a>
             </volist>
 
         </ul>

@@ -11,7 +11,16 @@
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
+    <style>
+        #sendTo .address_defalut .bg{
+            width: 100%;
+            height: 4px;
+            overflow: hidden;
+            background: url(__PUBLIC__/order/consignee_bg.png);
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -30,8 +39,20 @@
                     <p class="ad-p1">{$address['province']}{$address['city']}{$address['county']}{$address['detailed']}</p>
                 </div>
             </a>
-
-
+            <a href={:U('Order/address',array('id'=>$id))}>
+            <div id="sendTo">
+                <div class="address_defalut">
+                    <div class="bg"></div>
+                    <ul id="editAddBtn">
+                        <li><i class="fa fa-user"></i><b id="consignee_name"><span class="fl ad-span1">{$address['name']}</span>
+                            <span class="fr ad-span1">{$address['phone_num']}</span></b></li>
+                        <li><i class="fa fa-tag"></i><b id="consignee_code">{$address['province']}{$address['city']}{$address['county']}{$address['detailed']}</b></li>
+                    </ul>
+                    <input name="address_id" type="hidden" value="">
+                    <div class="bg"></div>
+                </div>
+            </div>
+            </a>
             <table class="table">
                 <thead>
                     <tr>
@@ -92,12 +113,12 @@
 <script type="text/javascript" src="__PUBLIC__/order/inline.js.下载"></script>
 <script type="text/javascript" src="__PUBLIC__/order/default.js.下载"></script>
 <script type="text/javascript" src="__PUBLIC__/order/jquery.noty.packaged.js.下载"></script>
+<script src="https://use.fontawesome.com/b4784f3c7b.js"></script>
 <script>
     $('#yu_e').click(function () {
         var id = $("input[name='id']").val();
         var address_id = $("input[name='address_id']").val();
-        alert(address_id);
-        alert(id);
+
         $.post("{:U(\"Order/yu_e\")}",{id:id,address_id,address_id},function(data){
                 if(data['code'] == 1)
                 {
