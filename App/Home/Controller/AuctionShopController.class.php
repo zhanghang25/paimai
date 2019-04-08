@@ -54,6 +54,14 @@ class AuctionShopController extends ComController
                 $tmp_ids[] = $bidding['user_id'];
             }
             $ids = array_unique($tmp_ids);
+            $where['id'] = array('in',$ids);
+            M('user')->where($where)->setInc('guaranty',$auction['guaranty']);
+            M('user')->where($where)->setDec('freeze',$auction['guaranty']);
+            foreach($ids as $id)
+            {
+                getAccount($id,$time,$auction['guaranty'],9,1);
+                getAccount($id,$time,$auction['guaranty'],11,1);
+            }
             $updata_set['auction_person'] = implode(',',$ids);
             $update_set['user_id'] = $biddings[0]['user_id'];
             M('auction_info')->data($update_set)->where('id='.$auction['id'])->save();
@@ -69,7 +77,7 @@ class AuctionShopController extends ComController
             M('bidding')->where('id='.$biddings[0]['id'])->setDec('status',1);
 
             $logistic['sid'] = $auction['shop_id'];
-            $logistic['status'] = 0;
+            $logistic['status'] = 1;
             $logistic['uid'] = $success_man['id'];
             $logistic['placetime'] = time();
             $logistic['logistics_price'] = 0;
@@ -131,7 +139,15 @@ class AuctionShopController extends ComController
         $data['status'] = 0;
         $data['user_id'] = session('hid');
         $data['time'] = getMillisecond();
-
+      
+        $biddings2 = M('bidding')->where('auction_id='.$auction_id)->order("time desc")->find();
+        if(getMillisecond()-$biddings2[0]['time']<4000)
+        {
+           
+            $data5['code'] = 2;
+            $data5['msg'] = "参与人数过多，请稍后";
+            $this->ajaxReturn($data5);
+        }
         $res = M('bidding')->data($data)->add();
        if($res){
 
@@ -142,7 +158,6 @@ class AuctionShopController extends ComController
        }
         //获取所有的加价信息
         $biddings = M('bidding')->where('auction_id='.$auction_id)->order("time desc")->select();
-
         //加入返佣
         if(count($biddings)>1)
         {
@@ -174,12 +189,21 @@ class AuctionShopController extends ComController
             $data2['user_id'] = $success_man['id'];
 
             //参拍人信息
-            $tmp_ids = "";
+            $tmp_ids = [];
             foreach ($biddings as $bidding )
             {
                 $tmp_ids[] = $bidding['user_id'];
             }
             $ids = array_unique($tmp_ids);
+
+            $where['id'] = array('in',$ids);
+            M('user')->where($where)->setInc('guaranty',$auction['guaranty']);
+            M('user')->where($where)->setDec('freeze',$auction['guaranty']);
+            foreach($ids as $id)
+            {
+                getAccount($id,$time,$auction['guaranty'],9,1);
+                getAccount($id,$time,$auction['guaranty'],11,1);
+            }
             $data2['auction_person'] = implode(',',$ids);
 
             //拍卖信息入库
@@ -198,7 +222,7 @@ class AuctionShopController extends ComController
             M('bidding')->where('id='.$biddings[0]['id'])->setDec('status',1);
 
             $logistic['sid'] = $test_auction['shop_id'];
-            $logistic['status'] = 0;
+            $logistic['status'] = 1 ;
             $logistic['uid'] = $success_man['id'];
             $logistic['placetime'] = time();
             $logistic['logistics_price'] = 0;
@@ -227,7 +251,6 @@ class AuctionShopController extends ComController
 //            $data['code']  = 2;
 //            $this->ajaxReturn($data);
 //        }
-
      $data['data'] = M('bidding')
          ->alias('b')
          ->where(array('auction_id'=>$auction_id))
@@ -237,7 +260,9 @@ class AuctionShopController extends ComController
                                    ->field("b.*,u.name")
 //                                   ->field("b.*")
                                    ->select();
-   
+        $tmp['success_price'] = $data['data'][0]['price'];
+        M('auction_info')->where('id='.$auction_id)->data($tmp)->save();
+        $data['price'] = $tmp['success_price'];
       $data['length'] = count($data['data']);
         $this->ajaxReturn($data);
     }
@@ -263,12 +288,12 @@ class AuctionShopController extends ComController
 
         $time = time();
 
-        $bidding = M('bidding')->where('auction_id='.$auction_id)->select();
-        if(empty($bidding))
-        {
-            $data['data'] = 2;
-            $this->ajaxReturn($data);
-        }
+//        $bidding = M('bidding')->where('auction_id='.$auction_id)->select();
+//        if(empty($bidding))
+//        {
+//            $data['data'] = 2;
+//            $this->ajaxReturn($data);
+//        }
 
         $res = I('post.res');
         //判断是否为间歇
@@ -287,7 +312,7 @@ class AuctionShopController extends ComController
 
 
         //查询是否有用户加价记录
-            $judge_user = M('bidding')->where('auction_id='.$auction_id.' and user_id='.$user['id']);
+            $judge_user = M('bidding')->where('auction_id='.$auction_id.' and user_id='.$user['id'])->select();
         //判断用户保证金是否大于拍卖商品的保证金
         if(empty($judge_user)){
 
@@ -298,15 +323,21 @@ class AuctionShopController extends ComController
             }
 
 
+            $data['data'] = 2;
+            $this->ajaxReturn($data);
 
+        }
+        if($res == 0)
+        {
+            $data4['data'] = 1;
+            $data4['msg'] = "正在整理拍卖信息，请稍候！";
 
-
+            $this->ajaxReturn($data4);
         }
 
 
 
-        $data['data'] = 2;
-        $this->ajaxReturn($data);
+
 
     }
 

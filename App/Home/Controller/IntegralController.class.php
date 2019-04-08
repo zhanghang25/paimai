@@ -127,8 +127,8 @@
                 $b=$user->where($map)->find();
         
                 if (!$b){
-                    $datq=$user->where ('uid='.session('hid'))->find();
-                    $address->where('id='.$datq['id'])->save(array('default'=>1));
+                    $data=$user->where ('uid='.session('hid'))->find();
+                    $user->where('id='.$datq['id'])->save(array('default'=>1));
                 }
             }
             $data=$user->where ('uid='.session('hid'))->order ('id asc')->select();

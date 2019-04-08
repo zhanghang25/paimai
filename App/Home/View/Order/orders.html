@@ -53,10 +53,13 @@
         待付款
     </li>
     <li class="">
-        待处理
+        待发货
     </li>
     <li class="">
-        待发货
+        已发货
+    </li>
+    <li class="">
+        已收货
     </li>
     <!--<li>-->
         <!--拍卖中-->
@@ -66,7 +69,7 @@
             <li class="">
         <ul class="mo-ul1">
             <volist name="total" id="order">
-            <if condition="$total['status'] eq 0"><a href="{:U('Order/oneStep',array('bianhao'=>$total['bianhao'],'shop_price'=>$total['shop_price']))}"><else /><a></if>
+            <if condition="$order['status'] eq 0"><a href="{:U('Order/oneStep',array('id'=>$order['id']))}"><else /><a></if>
             <li style="border-bottom: 1px solid #e0e0e0;padding: 0.15rem 0.23rem 0.28rem;">
                 <div class="clearfix">
                     <img src="{$order.pic}" class="tb-img1 fl">
@@ -75,7 +78,7 @@
                         <p class="tb-p3">成交价:{$order.shop_price}元</p>
                         <div class="clearfix">
                             <span class="tb-span1">下单时间:{$order.placetime|date="Y-m-d H:i:s",###}</span>
-                            <div class="tb-div2 bc-grey fr"><if condition="$order['status'] eq 0">未付款<elseif condition="$order['status'] eq 1" />未处理<else />未发货</if></div>
+                            <div class="tb-div2 bc-grey fr"><if condition="$order['status'] eq 1">待付款<elseif condition="$order['status'] eq 2" />待发货<elseif condition="$order['status'] eq 3" />已发货<elseif condition="$order['status'] eq 4" />已收货</if></div>
                         </div>
                     </div>
                 </div>
@@ -88,6 +91,7 @@
             <li class="current">
                 <ul class="mo-ul1">
                     <volist name="wait_pay" id="order">
+                        <a href="{:U('Order/oneStep',array('id'=>$order['id']))}">
                         <li style="border-bottom: 1px solid #e0e0e0;padding: 0.15rem 0.23rem 0.28rem;">
                             <div class="clearfix">
                                 <img src="{$order.pic}" class="tb-img1 fl">
@@ -96,11 +100,12 @@
                                     <p class="tb-p3">成交价:{$order.shop_price}元</p>
                                     <div class="clearfix">
                                         <span class="tb-span1">下单时间:{$order.placetime|date="Y-m-d H:i:s",###}</span>
-                                        <div class="tb-div2 bc-grey fr"><if condition="$order['status'] eq 0">未付款<elseif condition="$order['status'] eq 1" />未处理<else />未发货</if></div>
+                                        <div class="tb-div2 bc-grey fr"><if condition="$order['status'] eq 1">待付款<elseif condition="$order['status'] eq 2" />待发货<elseif condition="$order['status'] eq 3" />已发货<elseif condition="$order['status'] eq 4" />已收货</if></div>
                                     </div>
                                 </div>
                             </div>
                         </li>
+                        </a>
                     </volist>
 
                 </ul>
@@ -116,7 +121,7 @@
                             <p class="tb-p3">成交价:{$order.shop_price}元</p>
                             <div class="clearfix">
                                 <span class="tb-span1">下单时间:{$order.placetime|date="Y-m-d H:i:s",###}</span>
-                                <div class="tb-div2 bc-grey fr"><if condition="$order['status'] eq 0">未付款<elseif condition="$order['status'] eq 1" />未处理<else />未发货</if></div>
+                                <div class="tb-div2 bc-grey fr"><if condition="$order['status'] eq 1">待付款<elseif condition="$order['status'] eq 2" />待发货<elseif condition="$order['status'] eq 3" />已发货<elseif condition="$order['status'] eq 4" />已收货</if></div>
                             </div>
                         </div>
                     </div>
@@ -136,7 +141,28 @@
                             <p class="tb-p3">成交价:{$order.shop_price}元</p>
                             <div class="clearfix">
                                 <span class="tb-span1">下单时间:{$order.placetime|date="Y-m-d H:i:s",###}</span>
-                                <div class="tb-div2 bc-grey fr"><if condition="$order['status'] eq 0">未付款<elseif condition="$order['status'] eq 1" />未处理<else />未发货</if></div>
+                                <div class="tb-div2 bc-grey fr"><if condition="$order['status'] eq 1">待付款<elseif condition="$order['status'] eq 2" />待发货<elseif condition="$order['status'] eq 3" />已发货<elseif condition="$order['status'] eq 4" />已收货</if></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </volist>
+
+        </ul>
+    </li>
+
+    <li class="">
+        <ul class="mo-ul1">
+            <volist name="deliveried" id="order">
+                <li style="border-bottom: 1px solid #e0e0e0;padding: 0.15rem 0.23rem 0.28rem;">
+                    <div class="clearfix">
+                        <img src="{$order.pic}" class="tb-img1 fl">
+                        <div class="fr tb-div1">
+                            <p class="tb-p2" style="height:0.48rem">{$order.shop_name}</p>
+                            <p class="tb-p3">成交价:{$order.shop_price}元</p>
+                            <div class="clearfix">
+                                <span class="tb-span1">下单时间:{$order.placetime|date="Y-m-d H:i:s",###}</span>
+                                <div class="tb-div2 bc-grey fr"><if condition="$order['status'] eq 1">待付款<elseif condition="$order['status'] eq 2" />待发货<elseif condition="$order['status'] eq 3" />已发货<elseif condition="$order['status'] eq 4" />已收货</if></div>
                             </div>
                         </div>
                     </div>
