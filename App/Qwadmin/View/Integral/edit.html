@@ -78,30 +78,19 @@
                             </div>
 
                             <div class="space-4"></div>
-
-
                             <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2">
-                                    商品库存 </label>
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-1">
+                                    可兑换可用余额： </label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="count"  placeholder="商品库存"
-                                           class="col-xs-10 col-sm-5" value={$data['count']}>
+                                    <input type="text" name="price" id="seotitle" placeholder="可兑换的可用余额"
+                                           class="col-xs-10 col-sm-5" value={$data['price']}>
                                     <span style="display: none" class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">商品库存。</span>
+												<span class="middle">设置积分，反派额可兑换的可用余额</span>
 											</span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2">
-                                    运费 </label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="freight"  placeholder="商品运费"
-                                           class="col-xs-10 col-sm-5" value={$data['freight']}>
-                                    <span style="display: none" class="help-inline col-xs-12 col-sm-7">
-												<span class="middle">运费。</span>
-											</span>
-                                </div>
-                            </div>
+
+                            <div class="space-4"></div>
 
                             <div class="form-group">
 
@@ -121,23 +110,6 @@
                                     </div>
                                 </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="form-field-0">
-                                    商品简介 </label>
-                                <div class="col-sm-9">
-                                    <textarea name="brief" style="height:154px;width: 377px;">{$data['brief']}</textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2">
-                                    商品详情内容 </label>
-                                <div class="col-sm-9">
-                                        <textarea name="detail" id="detail"
-                                                  style="width:100%;height:400px;visibility:hidden;">{$data['detail']}</textarea>
-                                </div>
-                            </div>
-                            <div class="space-4"></div>
 
                             <input type="hidden" value={$data['id']} name="aid">
                             <div class="col-md-offset-2 col-md-9">

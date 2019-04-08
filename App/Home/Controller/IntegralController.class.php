@@ -23,7 +23,7 @@
             $integral=M('integral');
             $uid=session ('hid');
             $fen=$user->where('id='.$uid)->find ();
-            $data=$integral->where('status=1 and count>0')->select ();
+            $data=$integral->where('status=1')->select ();
             $this->assign('data',$data);
             $this->assign('fen',$fen);
             $this->display('personal/jifen');
@@ -166,6 +166,38 @@
             $this->assign('data',$data1);
             
             $this->display('user/1');
+         }
+         
+         public function huan(){
+            $id=I('post.id');
+             $data=I('post.');
+             $user=M('user');
+             $integral=M ('integral');
+             $data1=$user->where ('id='.session ('hid'))->find ();
+             $data2=$integral->where ('id='.$id)->find();
+             if ((float)$data1['point']<(float)($data2['fen_price'])){
+                 $this->ajaxReturn (array ('code'=>0,'msg'=>'您的积分不足'));
+             }
+             if ((float)$data1['anti_money']<(float)$data2['e_price']){
+                 $this->ajaxReturn (array ('code'=>0,'msg'=>'您的反拍额不足'));
+             }
+             $msg=array ();
+             $msg['point']=(float)$data1['point']-(float)$data2['fen_price'];
+             $msg['anti_money']=(float)$data1['anti_money']-(float)$data2['e_price'];
+             $msg['available_balance']=(float)$data1['available_balance']+(float)$data2['price'];
+             M()->startTrans();
+             $usr=$user->where ('id='.session('hid'))->save($msg);
+             getAccount(session ('hid'),time(),(float)$data2['fen_price'],6,2);
+             getAccount(session ('hid'),time(),(float)$data2['e_price'],5,3);
+             getAccount(session ('hid'),time(),(float)$data2['price'],12,2);
+             if ($user){
+                 M()->commit();
+                 $this->ajaxReturn (array ('code'=>1,'msg'=>'购买成功，请继续选购商品','url'=>U('integral/index')));
+             }else{
+                 M()->rollback();
+                 $this->ajaxReturn (array ('code'=>0,'msg'=>'网络错误请稍后重试'));
+             }
+             
          }
       
     }

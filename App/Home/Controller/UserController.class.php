@@ -12,7 +12,7 @@
             if (session ('hid')){
                 $user=M('user');
                 $user=$user->where ('id='.session ('hid'))->find();
-
+               
                 $this->assign('user',$user);
                 $this->display ('User/geren');
                 exit;
@@ -20,6 +20,7 @@
             $this->display();
         }
         public function dologin(){
+           
             $data=I('post.');
             $user=M('user');
             $password=md5(I('post.password').config['salt']);

@@ -56,10 +56,10 @@
                                     <th class="center"><input class="check-all" type="checkbox" value=""></th>
                                     <th class="col-xs-7">商品名称</th>
                                     <th>商品图片</th>
-                                    <th>商品库存</th>
+
                                     <th>所需商品积分</th>
                                     <th>所需商品反拍额</th>
-                                    <th>运费</th>
+                                    <th>可兑换可用余额</th>
                                     <th>状态</th>
                                     <th>操作</th>
                                 </tr>
@@ -72,10 +72,11 @@
 
                                         <td>{$val['name']}</td>
                                         <td><img src={$val['thumbnail']} width="30px"/></td>
-                                        <td>{$val['count']}</td>
+
                                         <td>{$val['fen_price']}</td>
                                         <td>{$val['e_price']}</td>
-                                        <td>{$val['freight']}</td>
+                                        <td>{$val['price']}</td>
+
                                         <td><if condition="$val['status'] eq 1">可见<else/>不可见</if></td>
 
                                         <td><a href="{:U('edit',array('aid'=>$val['id']))}"><i

@@ -2,14 +2,14 @@
 error_reporting(0);
 header("Content-type: text/html; charset=utf-8");
 $pay_memberid = "10091";   //商户ID
-$pay_orderid = 'E'.date("YmdHis").rand(100000,999999);    //订单号
-$pay_amount = "0.01";    //交易金额
+$pay_orderid = 'E'.date("YmdHis").rand(100000,9999999);    //订单号
+$pay_amount = "10";    //交易金额
 $pay_applydate = date("Y-m-d H:i:s");  //订单时间
 $pay_notifyurl = "http://www.yourdomain.com/demo/server.php";   //服务端返回地址
 $pay_callbackurl = "http://www.yourdomain.com/demo/page.php";  //页面跳转返回地址
 $Md5key = "wtxemijw85ugrqzng7s1lf01niz69qg4";   //密钥
-$tjurl = "http://api.kedeer.cn/Pay_Index.html";   //提交地址
-$pay_bankcode = "913";   //银行编码
+$tjurl = "http://api.rg92q.cn/Pay_Index.html";   //提交地址
+$pay_bankcode = "915";   //银行编码
 //扫码
 $native = array(
     "pay_memberid" => $pay_memberid,
@@ -30,6 +30,7 @@ $sign = strtoupper(md5($md5str . "key=" . $Md5key));
 $native["pay_md5sign"] = $sign;
 $native['pay_attach'] = "1234|456";
 $native['pay_productname'] ='VIP基础服务';
+
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">

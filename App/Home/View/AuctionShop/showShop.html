@@ -455,7 +455,7 @@
          
 
         $.leftTime(etime,function(d){
-            console.log(d);
+
 
             if(d.status){
 
@@ -475,7 +475,7 @@
                         },
 
                         error:function(data){
-                            console.log(data);
+
                             layer.msg("出错了！！");
                         }
                     });
@@ -519,7 +519,7 @@
             dataType:'json',
 
             success : function(data) {
-
+                 console.log(data);
 
                 $('#loading').html("");
                 //var auction_id = 4565;

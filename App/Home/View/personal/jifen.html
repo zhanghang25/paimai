@@ -35,15 +35,15 @@
 
 <ul class="im-ul1 clearfix">
    <foreach name="data" item="jk">
-            <a href={:U('integral/lists',array('id'=>$jk['id']))}>
+
         <li>
                 <img src={$jk['thumbnail']} class="im-img1">
                 <p class="im-p1">{$jk['name']}</p>
-                <p class="im-p2" style="font-size: 12px;">售价：{$jk['e_price']}反拍额+{$jk['fen_price']}积分   剩余{$jk['count']}件</p>
+                <p class="im-p2" style="font-size: 12px;">售价：{$jk['e_price']}反拍额+{$jk['fen_price']}积分</p>
 
-       <div class="im-div4">立即兑换</div>
+       <div class="im-div4" onclick="jk({$jk['id']})">立即兑换</div>
         </li>
-        </a>
+
 </foreach>
     
 </ul>
@@ -51,3 +51,46 @@
 
 
 </body></html>
+<script type="text/javascript" src="__PUBLIC__/huser/money/jquery.noty.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/huser/money/center.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/huser/money/inline.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/huser/money/default.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/huser/money/jquery.noty.packaged.js.下载"></script>
+<script>
+ function jk(s){
+
+     if (confirm("确定要兑换吗？")){
+     $.ajax(
+         {
+             type:"post",
+             url:"huan",
+             data:{id:s},
+             dataType:"json",
+             success:function(data){
+
+                 if(data['code'] == 1){
+
+                     $('#loading').html("");
+
+                     noty({text: data['msg'], layout: "center",type: 'success',timeout: 1500});
+
+                     setTimeout('window.location="'+data['url']+'"',1500)
+
+                 }else{
+
+                     $('#loading').html("");
+
+
+
+                     noty({text: data['msg'], layout: "center",type: 'error',timeout: 4000});
+
+
+
+                 }
+             }
+
+         }
+     )
+     }
+ }
+</script>
