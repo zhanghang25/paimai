@@ -25,18 +25,18 @@
                
                 $num=$user->where('parent_id='.$id)->count();
                 if (ceil ($num/3)<$offct){
-                    $offct=ceil ($num/3);
+                    $offct1=ceil ($num/3);
                 }
-                $next=$offct+1;
+                $next=$offct1+1;
                 if (ceil ($num/3)<$next){
                     $next=ceil($next);
                 }
-        
+                   
                     $limit=(($offct-1)*3).",3";
               
                 $auction_info=M('auction_info');
                 $data=$user->where ('id='.$id)->find();
-                
+               
                 $code=$user->where('parent_id='.$data['id'])->limit ($limit)->select ();
                 
                 foreach($code as  $k=>$v){
@@ -47,7 +47,7 @@
                     
                     for ($i=1;$i<=ceil($num/3);$i++){
                        
-                       $html.="<a href='".U('fenxiao/index',array('page'=>$i))."' style='magin-right:3px;'>".$i."</a>";
+                       $html.="<a href='".U('fenxiao/index',array('page'=>$i))."' >".$i."</a>";
         
                     }
                 }

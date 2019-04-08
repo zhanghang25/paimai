@@ -60,7 +60,7 @@
 </script>
 <div class="header">
     <a onclick="javascript:history.back(-1);"><img src="__PUBLIC__/index/image/back1.png" class="h-img1"></a>
-    商品详情	<a href="http://weizhong.yimei.cn/home/singlepage/newhand"><img src="__PUBLIC__/index/image/help.png" class="h-img"></a>
+    商品详情	<a href={:U('index/articles',array('id'=>1))}><img src="__PUBLIC__/index/image/help.png" class="h-img"></a>
 </div>
 <div id="wrap">
     <div class="hiSlider-wrap" style="overflow: hidden; position: relative; width: 375px;"><ul class="hiSlider hiSlider3" style="width: 200%; left: -375px; position: relative;">
@@ -150,13 +150,13 @@
         </ul>
     </li>
     <li>
-        <a href="http://weizhong.yimei.cn/home/singlepage/auctionrules">
+        <a href={:U('integral/articles',array('id'=>4))}>
             <div class="pd-div8 clearfix">
                 <span class="pd-span9 fl">竞拍规则</span>
                 <img src="__PUBLIC__/index/image/logo2.png" class="pd-img4 fr">
             </div>
         </a>
-        <a href="http://weizhong.yimei.cn/home/singlepage/margin">
+        <a href={:U('integral/articles',array('id'=>5))}>
             <div class="pd-div9 clearfix">
                 <span class="pd-span9 fl">保证金规则</span>
                 <img src="__PUBLIC__/index/image/logo2.png" class="pd-img4 fr">
