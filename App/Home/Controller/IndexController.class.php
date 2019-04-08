@@ -87,7 +87,7 @@ class IndexController extends ComController
             ->where('b.status = 1')
             ->select();
         $this->assign('biddings',$biddings);
-
+          
 
         $this->display();
     }

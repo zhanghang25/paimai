@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://weizhong.yimei.cn/home/user/mymoney -->
+<html style="font-size: 54.8px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>我的钱包</title> 
+    <script src="__PUBLIC__/huser/qianbao/jquery.1.9.1.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/huser/qianbao/rem.js"></script>
+    <link href="__PUBLIC__/huser/qianbao/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/huser/qianbao/jquery.hiSlider.min.css">
+    
+    <link type="text/css" href="__PUBLIC__/huser/qianbao/jq22.css" rel="stylesheet">
+</head>
+<body>
+<div class="" id="load"></div>
+<script>
+    window.onload = function() {
+        document.getElementById('load').className='';
+    };
+</script>
+
+<div class="header">
+	<a onclick="javascript:history.back(-1);"><img src="__PUBLIC__/huser/qianbao/back1.png" class="h-img1"></a>
+	  我的钱包	<a href={:U('index/articles',array('id'=>1))}><img src="__PUBLIC__/huser/qianbao/help.png" class="h-img"></a>
+</div>
+
+<ul class="mw-ul1">
+    <li>
+        <p class="mw-p1">保证金余额（元）</p>
+        <div class="clearfix">
+            <span class="mw-span1 fl">¥{$data['guaranty']}</span>
+            <a href="http://weizhong.yimei.cn/home/user/topup"><div class="mw-div1 fr">充值</div></a>
+        </div>
+    </li>
+    <li>
+        <p class="mw-p1">冻结保证金</p>
+        <div class="clearfix">
+            <span class="mw-span1 fl">¥{$data['freeze']}</span>
+        </div>
+    </li>
+    <li>
+        <p class="mw-p1">历史总收益</p>
+        <div class="clearfix">
+            <span class="mw-span1 fl" style="line-height:normal;">
+                <p style="font-size: 13px;margin: 0;padding: 0;display: inline-block;margin-top: 10px;color: #2f2f2f;">返佣金:￥{$data1['amount']}</p>
+                 <p style="font-size: 13px;margin-top: 10px;color: #2f2f2f;">反派额:￥{$data2['amount']}</p>
+                 <p style="font-size: 13px;margin-top: 10px;color: #2f2f2f;">积分:￥{$data3['amount']}</p>
+                <p style="font-size: 13px;margin-top: 10px;color: #2f2f2f;">冻结金:￥{$data4['amount']}</p>
+            </span>
+            <a href="http://weizhong.yimei.cn/home/user/profit"> <div class="mw-div1 fr">明细</div></a>
+        </div>
+    </li>
+    <li>
+        <p class="mw-p1">收益余额</p>
+        <div class="clearfix">
+            <span class="mw-span1 fl">¥{$data['available_balance']}</span>
+        </div>
+    </li>
+    <li>
+        <p class="mw-p1">可提现</p>
+        <div class="clearfix">
+            <span class="mw-span1 fl">¥{$data['available_balance']}</span>
+            <a href={:U('Payconfig/tixian')}> <div class="mw-div1 fr">提现</div></a>
+            <a href="http://weizhong.yimei.cn/home/user/moneylog"> <div class="mw-div1 fr" style="margin-right: 6px;">提现记录</div></a>
+        </div>
+    </li>
+</ul>
+<div class="f-dj"></div>
+<div class="footer">
+    <ul class="clearfix f-ul">
+        <li class="current">
+            <a href={:U('home/index/index')}>
+                <img src="__PUBLIC__/huser/geren/icon1.png" class="f-img2">
+                <p>首页</p>
+
+            </a>
+        </li>
+        <li>
+            <a href="{:U('Home/RecentDeal/showRecent')}">
+                <img src="__PUBLIC__/huser/geren/icon2.png" class="f-img2">
+                <p class="">最新成交</p>
+
+
+            </a>
+        </li>
+        <li>
+            <a href={:U('pai/index')}>
+                <img src="__PUBLIC__/huser/geren/icon3.png" class="f-img2">
+                <p>参拍</p>
+            </a>
+        </li>
+        <li>
+            <a href={:U('home/user/login')}>
+                <img src="__PUBLIC__/huser/geren/icon4h.png" class="f-img2">
+                <p style="color: red">我的</p>
+            </a>
+        </li>
+    </ul>
+</div>
+
+</body></html>

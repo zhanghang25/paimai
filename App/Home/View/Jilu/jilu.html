@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)http://weizhong.yimei.cn/home/index/biddetail/auction_id/4565 -->
+<html style="font-size: 54.8px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>出价记录</title> 
+    <script src="__PUBLIC__/huser/jilu/jquery.1.9.1.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/huser/jilu/rem.js"></script>
+    <link href="__PUBLIC__/huser/jilu/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/huser/jilu/jquery.hiSlider.min.css">
+    
+    <link type="text/css" href="__PUBLIC__/huser/jilu/jq22.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="" id="load"></div>
+<script>
+    window.onload = function() {
+        document.getElementById('load').className='';
+    };
+</script>
+<div class="header">
+	<a onclick="javascript:history.back(-1);"><img src="__PUBLIC__/huser/jilu/back1.png" class="h-img1"></a>
+	  出价记录	<a href={:U('index/articles',array('id'=>1))}><img src="__PUBLIC__/huser/jilu/help.png" class="h-img"></a>
+</div>
+<table class="pd-tabble">
+                <tbody>
+                <volist name="data" id="jk">
+
+
+                    <tr>
+                <td>{$jk['user_id']}</td>
+                        <td><if condition="!$jk['as']">出局<else/>领先</if></td>
+                <td>5</td>
+                <td>￥{$jk['price']}</td>
+            </tr>
+                </volist>
+        </tbody></table>
+
+
+
+</body></html>

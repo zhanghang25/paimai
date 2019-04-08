@@ -11,7 +11,7 @@
         public function _initialize()
         {
           if (!session('hid')){
-              $this->display('user/login');
+              $this->display('User/login');
               exit;
               
           }
@@ -29,20 +29,20 @@
             }
             $this->assign('data',$data1);
         
-            return $this->display('user/setup');
+            return $this->display('User/setup');
         }
         public function info(){
             $user=M('user');
             $data=$user->where('id='.session('hid'))->find();
             
             $this->assign ('data',$data);
-            return $this->display('user/info');
+            return $this->display('User/info');
         }
         public function mgai(){
             $user=M('user');
             $data=$user->where('id='.session('hid'))->find ();
             $this->assign ('data',$data);
-            return $this->display('user/mgai');
+            return $this->display('User/mgai');
         }
         public function  editName(){
             $data=I('post.');
@@ -80,11 +80,20 @@
                     }
                     //上传成功，需要拼接文件保存路径，用于添加到数据表
                     $data['goods_big_img'] = UPLOAD_PATH . $upload_res['savepath'] . $upload_res['savename'];
-        
+                    $b=UPLOAD_PATH . $upload_res['savepath'] . $upload_res['savename'];
+                    $image = new \Think\Image();
+                   
+                    
+                    $image->open($_SERVER['DOCUMENT_ROOT'].$b);
+                    $ty=UPLOAD_PATH . $upload_res['savepath'] .'mini_'. $upload_res['savename'];
+                    $image->thumb(150, 150)->save($_SERVER['DOCUMENT_ROOT'].$ty);
                     //商品logo图片上传成功，生成缩略图
-                 
+                    @unlink ($_SERVER['DOCUMENT_ROOT'].$b);
+                    $ty=UPLOAD_PATH . $upload_res['savepath'] .'mini_'. $upload_res['savename'];
+                   
+                    
                     //数据处理成功，返回新的$data
-                    $date['thumb']= $data['goods_big_img'];
+                    $date['thumb']=$ty;
                     $user=M('user');
                     $b=$user->where('id='.session('hid'))->find();
                     $a=$user->where ('id='.session ('hid'))->save($date);
@@ -105,9 +114,9 @@
 
             }
             public function service(){
-             return $this->display('personal/4');
+             return $this->display('Personal/4');
             }
-            
+          
        
         
         

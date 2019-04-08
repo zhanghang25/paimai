@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <title>商品详情</title>
     <script src="__PUBLIC__/index/js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/index/js/rem.js.下载"></script>
+    <script type="text/javascript" src="__PUBLIC__/index/js/rem.js"></script>
     <link href="__PUBLIC__/index/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="__PUBLIC__/index/css/jquery.hiSlider.min.css">
 
@@ -108,7 +108,7 @@
         </div>
     </li>
     <li>
-        <a href="http://weizhong.yimei.cn/home/index/biddetail/auction_id/4565">
+        <a href={:U('auctionShop/jilu',array('id'=>$auction['id']))}>
             <div class="clearfix pd-div6">
                 <img src="__PUBLIC__/index/image/logo20.png" class="pd-img2 fl">
                 <span class="pd-span6 fl">出价记录</span>
@@ -165,7 +165,10 @@
     </li>
     <li class="content">
         <p class="pd-p4">拍品详情</p>
-        <p data-spm-anchor-id="a261y.7663282.descBanner.i0.606862becctxwO" hiragino="" sans="" font-size:="" text-align:="" white-space:="" background-color:="" style="margin-top: 0px; margin-bottom: 0px; white-space: normal; padding: 0px; line-height: 1.5; clear: both; color: rgb(51, 51, 51);"><span style="line-height: 1.5;"><img alt="9H0A3858" src="__PUBLIC__/index/image/9037515930_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"><br><br></span></p><p hiragino="" sans="" font-size:="" text-align:="" white-space:="" background-color:="" style="margin-top: 0px; margin-bottom: 0px; white-space: normal; padding: 0px; line-height: 1.5; clear: both; color: rgb(51, 51, 51);"><span style="font-size: 9pt;"><span style="font-weight: 700;"><span style="font-family: 仿宋_gb2312;"><img alt="undefined" src="__PUBLIC__/index/image/9076796635_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"><br><br><img alt="undefined" src="__PUBLIC__/index/image/9058171040_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"><br><br><img alt="undefined" src="__PUBLIC__/index/image/9058123356_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"><br><br><img alt="undefined" src="__PUBLIC__/index/image/9076790401_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"><br><br><img alt="详情套版152_02" src="__PUBLIC__/index/image/9037536639_1545250718.jpg" max-width="990" style="border: none; visibility: visible; vertical-align: bottom; max-width: 790px; zoom: 1;"></span></span></span></p><p style="white-space: normal;"><span style="font-size: 9pt;"><span style="font-weight: 700;"><span style="font-family: 仿宋_gb2312;"><br></span></span></span></p><p><br></p> 		</li>
+        <p>
+            {$auction.detail}
+        </p>
+      </li>
 </ul>
 <div class="pd-dj"></div>
 
@@ -217,8 +220,8 @@
         <a href="http://weizhong.yimei.cn/home/user/mymoney"><div class="bond-ok" style="margin: auto;margin-top: 0.45rem;">去充值</div></a>
     </div>
 </div>
-<script src="__PUBLIC__/index/js/jquery.hiSlider.min.js.下载"></script>
-<script src="__PUBLIC__/index/js/time.js.下载"></script>
+<script src="__PUBLIC__/index/js/jquery.hiSlider.min.js"></script>
+<script src="__PUBLIC__/index/js/time.js"></script>
 
 <script>
     $('.hiSlider3').hiSlider({
@@ -437,11 +440,11 @@
 </script>
 <div id="loading" style="position:fixed;;top:38%;left: 40%;z-index:999"></div>
 
-<script type="text/javascript" src="__PUBLIC__/index/js/jquery.noty.js.下载"></script>
-<script type="text/javascript" src="__PUBLIC__/index/js/center.js.下载"></script>
-<script type="text/javascript" src="__PUBLIC__/index/js/inline.js.下载"></script>
-<script type="text/javascript" src="__PUBLIC__/index/js/default.js.下载"></script>
-<script type="text/javascript" src="__PUBLIC__/index/js/jquery.noty.packaged.js.下载"></script>
+<script type="text/javascript" src="__PUBLIC__/index/js/jquery.noty.js"></script>
+<script type="text/javascript" src="__PUBLIC__/index/js/center.js"></script>
+<script type="text/javascript" src="__PUBLIC__/index/js/inline.js"></script>
+<script type="text/javascript" src="__PUBLIC__/index/js/default.js"></script>
+<script type="text/javascript" src="__PUBLIC__/index/js/jquery.noty.packaged.js"></script>
 <script type="text/javascript" src="__PUBLIC__/index/js/leftTime.js"></script>
 <!-- 模板 -->
 <script type="text/javascript">

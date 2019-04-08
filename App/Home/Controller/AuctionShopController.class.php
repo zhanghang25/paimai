@@ -30,6 +30,7 @@ class AuctionShopController extends ComController
             M('auction_info')->data($update_set)->where('id='.$auction['id'])->save();
             $auction['status'] = 1;
         }
+        $auction['detail']=htmlspecialchars_decode($auction['detail']);
         $this->assign('auction',$auction);
         $this->display();
         }
@@ -340,6 +341,21 @@ class AuctionShopController extends ComController
 
 
 
+    }
+    public function jilu(){
+        $id=I('get.id');
+        $jk=M ('user');
+        $data=M('bidding')->where ('auction_id='.$id)->order('price desc')->select();
+        if ($data){
+            $data[0]['as']='aa';
+        }
+        foreach($data as $k=>$v){
+            $dat=$jk->where ('id='.$v['user_id'])->find ();
+            $data[$k]['user_id']=$dat['name'];
+        }
+        $this->assign ('data',$data);
+        
+       $this->display ('Jilu/jilu');
     }
 
 

@@ -164,7 +164,7 @@
             $data1["content"]=htmlspecialchars_decode($data1['content']);
             
             $this->assign('data',$data1);
-            
+           
             $this->display('user/1');
          }
          

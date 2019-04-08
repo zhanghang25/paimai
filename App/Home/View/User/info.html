@@ -4,8 +4,8 @@
     
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
     <title>个人信息</title> 
-    <script src="__PUBLIC__/info/jquery.1.9.1.js.下载"></script>
-    <script type="text/javascript" src="__PUBLIC__/info/rem.js.下载"></script>
+    <script src="__PUBLIC__/info/jquery.1.9.1.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/info/rem.js"></script>
     <link href="__PUBLIC__/info/style.css" rel="stylesheet">
     <link rel="stylesheet" href="__PUBLIC__/info/jquery.hiSlider.min.css">
     
@@ -47,6 +47,20 @@
         <img src="__PUBLIC__/info/logo2.png" class="p-img5 fr">
         <span class="ppi-span2 fr">15937353357</span>
     </li>
+    <a href={:U('payconfig/zhifu')}>
+        <li class="clearfix">
+            <span class="ppi-span1 fl">支付宝账户</span>
+            <img src="__PUBLIC__/info/logo2.png" class="p-img5 fr">
+            <span class="ppi-span2 fr">{$data['zhifu']}</span>
+        </li>
+    </a>
+    <a href={:U('payconfig/weixin')}>
+        <li class="clearfix">
+            <span class="ppi-span1 fl">微信账户</span>
+            <img src="__PUBLIC__/info/logo2.png" class="p-img5 fr">
+            <span class="ppi-span2 fr">{$data['weixin']}</span>
+        </li>
+    </a>
 </ul>
 <script>
     $('.ppi-img1').click(function(){
