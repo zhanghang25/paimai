@@ -139,12 +139,9 @@ class AuctionShopController extends ComController
         $data['status'] = 0;
         $data['user_id'] = session('hid');
         $data['time'] = getMillisecond();
-<<<<<<< HEAD
         $biddings2 = M('bidding')->where('auction_id='.$auction_id)->order("time desc")->select();
-=======
-      
+
         $biddings2 = M('bidding')->where('auction_id='.$auction_id)->order("time desc")->find();
->>>>>>> fb1f511a72b3cc12e177c0111785f6e93b8f7b7d
         if(getMillisecond()-$biddings2[0]['time']<4000)
         {
            
